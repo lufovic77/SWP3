@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private String departTime;  //출발 시간
     private int select_depart=0; //출발지 선택 햇는지 유무
     private int select_arrive=0; //도착지 선택 했는지 유무
+    //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
