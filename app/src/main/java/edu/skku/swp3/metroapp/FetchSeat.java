@@ -23,7 +23,6 @@ public class FetchSeat extends Thread {
             ois.close();
             soc.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
