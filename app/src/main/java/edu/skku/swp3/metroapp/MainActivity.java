@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
         map=(Button)findViewById(R.id.map);
 
+        FetchSeat fs = new FetchSeat();
+        fs.execute();
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
