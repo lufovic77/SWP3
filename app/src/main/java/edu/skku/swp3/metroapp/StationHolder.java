@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -14,15 +15,28 @@ import java.util.StringTokenizer;
  * Created by TS on 2018. 5. 31..
  */
 
+class PathData{
+    ArrayList<String> path;
+    public int length;
+    PathData(){
+        path=new ArrayList<>();
+    }
+    void addstation(String station){
+        path.add(station);
+    }
+}
 public class StationHolder extends AsyncTask< Void, Void, Void> {
     HashMap<String,StationClass> stationmap;
     HashMap<Integer,ArrayList<String>> stationorder;
+    HashMap<ArrayList<String>,PathData> pathtable;
+
     int numlines;
     Context ctxt;
     //ArrayList<String> stations;
     StationHolder(Context context){
         stationmap=new HashMap<>();
         stationorder=new HashMap<>();
+        pathtable=new HashMap<>();
         ctxt=context;
     }
 
@@ -36,6 +50,12 @@ public class StationHolder extends AsyncTask< Void, Void, Void> {
         return;
     }
 
+    public PathData findpath(String from,String to){
+        ArrayList<String> target=new ArrayList<>();
+        target.add(from);
+        target.add(to);
+        return pathtable.get(target);
+    }
     public StationClass getstation(String name){
         return stationmap.get(name);
     }
@@ -65,6 +85,8 @@ public class StationHolder extends AsyncTask< Void, Void, Void> {
             }
             stationorder.put(linenum,order);
         }//first part complete
+
+        //get lane info
         String updown;
         int first,last,intv,numstation;
         MetroClass car;
@@ -97,15 +119,38 @@ public class StationHolder extends AsyncTask< Void, Void, Void> {
             first=Integer.parseInt(tokenizer.nextToken());
             last=Integer.parseInt(tokenizer.nextToken());
             intv=Integer.parseInt(tokenizer.nextToken());
-            for(int j=first;j<=last;j+=intv){
-                car=new MetroClass();
-                numstation=order.size();
-                for(int k=numstation-1;k>0;k--) {
+            for(int j=first;j<=last;j+=intv) {
+                car = new MetroClass();
+                numstation = order.size();
+                for (int k = numstation - 1; k > 0; k--) {
                     stationmap.get(order.get(k)).addcar(linenum, updown, j, car);
                 }
             }
         }//completed stations
+
+
         //get paths
+        String from,to;
+        int count;
+        ArrayList<String> target;
+        while(sc.hasNext()){
+            line=sc.nextLine();
+            tokenizer = new StringTokenizer(line, ",");
+            target=new ArrayList<>();
+            from=tokenizer.nextToken();
+            to=tokenizer.nextToken();
+            target.add(from);
+            target.add(to);
+            PathData pth=new PathData();
+            count=0;
+            while(tokenizer.hasMoreTokens()){
+                pth.addstation(tokenizer.nextToken());
+                count++;
+            }
+            pth.length=count;
+            pathtable.put(target,pth);
+        }
+
         Log.i("Finished Reading db", "Read complete");
         sc.close();
         return null;

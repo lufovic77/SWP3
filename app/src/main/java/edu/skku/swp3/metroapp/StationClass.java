@@ -7,11 +7,11 @@ import java.util.HashMap;
  * Created by TS on 2018. 5. 31..
  */
 
+
 public class StationClass {
     HashMap<ArrayList<String>,MetroClass> stationtable;
     String stationname;
     public boolean isinterchange;
-
     StationClass(String name){
 
         stationtable= new HashMap<>();
