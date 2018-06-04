@@ -50,7 +50,7 @@ public class StationHolder extends AsyncTask< Void, Void, Void> {
         return;
     }
 
-    public PathData findpath(String from,String to){
+    public PathData findpath(String from,String to){        //스트링을 받아서
         ArrayList<String> target=new ArrayList<>();
         target.add(from);
         target.add(to);
