@@ -157,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 Toast.makeText(MainActivity.this, "!!"+text, Toast.LENGTH_SHORT).show();
                 Log.i("done", text);
+                path.closest(station,900);
 
                 /*Intent intent = new Intent(getBaseContext(), RouteInfo.class);
                 startActivity(intent);*/
