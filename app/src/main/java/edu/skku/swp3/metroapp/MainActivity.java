@@ -151,14 +151,29 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("input:", departure+","+arrival);
                 path = station.findpath(departure, arrival);
                 String text="";
-                Log.i("len:", Integer.toString(path.path.size()));
+                int pathLength=(path.path.size());
                 for(int i=0;i<path.path.size();i++){
-                    text=text+path.path.get(i)+", ";
+                    text=text+path.path.get(i)+",";
                 }
                 Toast.makeText(MainActivity.this, "!!"+text, Toast.LENGTH_SHORT).show();
                 Log.i("done", text);
                 path.closest(station,900);
 
+                if(pathLength==2){//환승 없음
+                    Intent intent = new Intent(MainActivity.this, RouteInfo.class);
+                    intent.putExtra("path", text);
+                    startActivity(intent);
+                }
+                else if(pathLength==3){//환승 1개
+                   /* Intent intent = new Intent(getBaseContext(), RouteInfo2.class);
+                    startActivity(intent);*/
+
+                }
+                else{   //환승 2개
+                    /*Intent intent = new Intent(getBaseContext(), RouteInfo3.class);
+                    startActivity(intent);*/
+
+                }
                 /*Intent intent = new Intent(getBaseContext(), RouteInfo.class);
                 startActivity(intent);*/
             }
