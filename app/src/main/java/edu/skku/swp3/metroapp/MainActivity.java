@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final StationHolder station= new StationHolder(MainActivity.this);
+        station.execute();
         final List<String> selectedItems = new ArrayList<String>();
 
         departList=(Button)findViewById(R.id.depart_btn);
@@ -145,9 +147,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 PathData path;
-                StationHolder station= new StationHolder(MainActivity.this);
+
+                Log.i("input:", departure+","+arrival);
                 path = station.findpath(departure, arrival);
                 String text="";
+                Log.i("len:", Integer.toString(path.path.size()));
                 for(int i=0;i<path.path.size();i++){
                     text=text+path.path.get(i)+", ";
                 }

@@ -16,7 +16,7 @@ import java.util.StringTokenizer;
  */
 
 class PathData{
-    ArrayList<String> path;
+    public ArrayList<String> path;
     public int length;
     PathData(){
         path=new ArrayList<>();
