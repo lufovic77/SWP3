@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private Integer[] numBtnIDs = { R.id.nam, R.id.sadang, R.id.chongsin, R.id.namsung, R.id.naebang, R.id.naksung, R.id.bangbae, };
     private String [] name ={"남태령", "사당", "총신대입구(이수)", "남성", "내방", "낙성", "방배"};
     private Button btn[] = new Button[10];
+    private Button ok;
     private int index;
     private int i;
     //
@@ -50,48 +51,7 @@ public class MainActivity extends AppCompatActivity {
         for(i=0;i<7;i++){
             btn[i]=(Button)findViewById(numBtnIDs[i]);
         }
-        btn[0].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popUp(v, 0);
-            }
-        });
-        btn[1].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popUp(v, 1);
-            }
-        });
-        btn[2].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popUp(v, 2);
-            }
-        });
-        btn[3].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popUp(v, 3);
-            }
-        });
-        btn[4].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popUp(v, 4);
-            }
-        });
-        btn[5].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popUp(v, 5);
-            }
-        });
-        btn[6].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popUp(v, 6);
-            }
-        });
+        ok = (Button)findViewById(R.id.ok);
 
         //DrawView에 넣기
 /*        btnList.setOnClickListener(new View.OnClickListener() {
@@ -178,8 +138,58 @@ public class MainActivity extends AppCompatActivity {
                         }).create().show();
             }
         });
-    }
 
+
+        btn[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popUp(v, 0);
+            }
+        });
+        btn[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popUp(v, 1);
+            }
+        });
+        btn[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popUp(v, 2);
+            }
+        });
+        btn[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popUp(v, 3);
+            }
+        });
+        btn[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popUp(v, 4);
+            }
+        });
+        btn[5].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popUp(v, 5);
+            }
+        });
+        btn[6].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popUp(v, 6);
+            }
+        });
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //DrawView 띄우기
+            }
+        });
+    }
     //남태령, 사당, 총신, 남성, 내방, 낙성, 방배
     public void popUp(View v, int i){
         index=i;
