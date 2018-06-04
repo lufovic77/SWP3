@@ -1,5 +1,7 @@
 package edu.skku.swp3.metroapp;
-
+/**
+ * Created by lufov, jinsun on 2018-06-04.
+ */
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean select_arrive=false; //도착지 선택 했는지 유무
 
     private Integer[] numBtnIDs = { R.id.nam, R.id.sadang, R.id.chongsin, R.id.namsung, R.id.naebang, R.id.naksung, R.id.bangbae, };
-    private String [] name ={"남태령", "사당", "총신대입구(이수)", "남성", "내방", "낙성", "방배"};
+    private String [] name ={"남태령", "사당", "총신대입구(이수)", "남성", "내방", "낙성대", "방배"};
     private Button btn[] = new Button[10];
     private Button ok;
     private int index;
@@ -139,6 +141,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PathData path;
+                StationHolder station= new StationHolder(MainActivity.this);
+                path = station.findpath(departure, arrival);
+                String text="";
+                for(int i=0;i<path.path.size();i++){
+                    text=text+path.path.get(i)+", ";
+                }
+                Toast.makeText(MainActivity.this, "!!"+text, Toast.LENGTH_SHORT).show();
+                Log.i("done", text);
+
+                /*Intent intent = new Intent(getBaseContext(), RouteInfo.class);
+                startActivity(intent);*/
+            }
+        });
 
         btn[0].setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,12 +202,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //DrawView 띄우기
-            }
-        });
     }
     //남태령, 사당, 총신, 남성, 내방, 낙성, 방배
     public void popUp(View v, int i){

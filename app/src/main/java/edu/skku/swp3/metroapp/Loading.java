@@ -1,5 +1,7 @@
 package edu.skku.swp3.metroapp;
-
+/**
+ * Created by lufov on 2018-06-04.
+ */
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
