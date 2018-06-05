@@ -1,15 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="189dp"
-        tools:layout_editor_absoluteY="123dp" />
-</android.support.constraint.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/elapsed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/time"
+            android:layout_marginTop="22dp"
+            android:text="소요시간" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="93dp"
+            android:layout_height="54dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/elapsed"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="11dp"
+            android:text="분"
+            android:textSize="35sp" />
+
+        <Button
+            android:id="@+id/depart"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/time"
+            android:layout_below="@+id/time"
+            android:text="출발" />
+
+        <Button
+            android:id="@+id/arrive"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/depart"
+            android:layout_alignBottom="@+id/depart"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="22dp"
+            android:text="도착" />
+
+        <TextView
+            android:id="@+id/deTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/depart"
+            android:layout_below="@+id/depart"
+            android:layout_marginTop="44dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/arTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/deTime"
+            android:layout_marginBottom="107dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/deName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/deTime"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@+id/time"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/arName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/deName"
+            android:layout_alignTop="@+id/arTime"
+            android:text="TextView" />
+    </RelativeLayout>
+</LinearLayout>

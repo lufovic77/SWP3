@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean select_arrive=false; //도착지 선택 했는지 유무
 
     private Integer[] numBtnIDs = { R.id.nam, R.id.sadang, R.id.chongsin, R.id.namsung, R.id.naebang, R.id.naksung, R.id.bangbae, };
-    private String [] name ={"남태령", "사당", "총신대입구(이수)", "남성", "내방", "낙성대", "방배"};
+    private String [] name ={"남태령", "사당", "총신대입구", "남성", "내방", "낙성대", "방배"};
     private Button btn[] = new Button[10];
     private Button ok;
     private int index;
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         departList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String[] items = new String[]{"남성", "충신대입구(이수)", "내방", "낙성대", "사당", "방배", "남태령"};
+                final String[] items = new String[]{"남성", "충신대입구", "내방", "낙성대", "사당", "방배", "남태령"};
                 final int[] selectedIndex = {0};
                 AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
                 dialog .setTitle("출발역")
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         arrivalList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String[] items = new String[]{"남성", "충신대입구(이수)", "내방", "낙성대", "사당", "방배", "남태령"};
+                final String[] items = new String[]{"남성", "충신대입구", "내방", "낙성대", "사당", "방배", "남태령"};
                 final int[] selectedIndex = {0};
                 AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
                 dialog .setTitle("도착역")
