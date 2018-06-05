@@ -69,17 +69,64 @@
             android:id="@+id/deName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/deTime"
-            android:layout_marginStart="20dp"
+            android:layout_alignBaseline="@+id/deTime"
+            android:layout_alignBottom="@+id/deTime"
+            android:layout_marginStart="26dp"
             android:layout_toEndOf="@+id/time"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/arName"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/deName"
             android:layout_alignTop="@+id/arTime"
             android:text="TextView" />
+
+        <TextView
+            android:id="@+id/deRound"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_alignBaseline="@+id/deTime"
+            android:layout_alignBottom="@+id/deTime"
+            android:layout_marginStart="11dp"
+            android:layout_toEndOf="@+id/deTime"
+            android:background="@drawable/round_button_darkgreen"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/arRound"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_alignBaseline="@+id/arName"
+            android:layout_alignBottom="@+id/arName"
+            android:layout_alignStart="@+id/deRound"
+            android:background="@drawable/round_button_darkgreen"
+            android:text="TextView" />
+
+        <View
+            android:id="@+id/vertical"
+            android:layout_width="12dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/deRound"
+            android:layout_above="@+id/arRound"
+            android:layout_toStartOf="@+id/deName"
+            android:background="#3d7048" />
+
+        <Button
+            android:id="@+id/seat"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:layout_below="@+id/deRound"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="39dp"
+            android:layout_toEndOf="@+id/depart"
+            android:background="@drawable/balloon"
+            android:text="좌석 정보"
+            android:textSize="18sp" />
+
     </RelativeLayout>
+
 </LinearLayout>
