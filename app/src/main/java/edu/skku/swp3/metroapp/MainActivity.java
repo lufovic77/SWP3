@@ -45,11 +45,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+/*
         final StationHolder station= new StationHolder(MainActivity.this);
         station.execute();
         final List<String> selectedItems = new ArrayList<String>();
-
+*/
         departList=(Button)findViewById(R.id.depart_btn);
         arrivalList=(Button)findViewById(R.id.arrival_btn);
         for(i=0;i<7;i++){
@@ -144,11 +144,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PathData path;
+                                  @Override
+                                  public void onClick(View v) {
+                                      PathData path;
 
-                Log.i("input:", departure+","+arrival);
+/*                Log.i("input:", departure+","+arrival);
                 path = station.findpath(departure, arrival);
                 String text="";
                int pathLength=(path.path.size());
@@ -168,15 +168,16 @@ public class MainActivity extends AppCompatActivity {
                    /* Intent intent = new Intent(getBaseContext(), RouteInfo2.class);
                     startActivity(intent);*/
 
-                }/*
+                                  }/*
                 else{   //환승 2개
                     /*Intent intent = new Intent(getBaseContext(), RouteInfo3.class);
                     startActivity(intent);*/
 
-                //}
+
+
                 /*Intent intent = new Intent(getBaseContext(), RouteInfo.class);
                 startActivity(intent);*/
-            }
+
         });
 
         btn[0].setOnClickListener(new View.OnClickListener() {
