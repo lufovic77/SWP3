@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="train_car">
+        <item >1호차</item>
+        <item >2호차</item>
+        <item >3호차</item>
+        <item >4호차</item>
+        <item >5호차</item>
+        <item >6호차</item>
+        <item >7호차</item>
+        <item >8호차</item>
+        <item >9호차</item>
+        <item >10호차</item>
+    </string-array>
+</resources>
