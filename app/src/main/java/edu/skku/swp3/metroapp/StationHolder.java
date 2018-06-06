@@ -137,7 +137,7 @@ public class StationHolder extends AsyncTask< Void, Void, Void> {
         //get lane info
         String updown;
         int first,last,intv,numstation,nujuk,nujukl;
-        MetroClass car;
+        SeatClass car;
         for(int i=0;i<numlines;i++){
             line=sc.nextLine();
             Log.i("Reading second part ", line);
@@ -156,7 +156,7 @@ public class StationHolder extends AsyncTask< Void, Void, Void> {
             stationmap.get(order.get(0)).uplast=last;
             stationmap.get(order.get(0)).upintv=intv;
             for(int k=first;k<=last;k+=intv){
-                car=new MetroClass();
+                car=new SeatClass();
                 stationmap.get(order.get(0)).addcar(linenum,updown,k,car);
             }
             nujuk=first;
@@ -168,7 +168,7 @@ public class StationHolder extends AsyncTask< Void, Void, Void> {
                 stationmap.get(order.get(j)).uplast=nujukl;
                 stationmap.get(order.get(j)).upintv=nujukl;
                 for(int k=nujuk;k<=nujukl;k+=intv){
-                    car=new MetroClass();
+                    car=new SeatClass();
                     stationmap.get(order.get(0)).addcar(linenum,updown,k,car);
                 }
             }
@@ -183,20 +183,20 @@ public class StationHolder extends AsyncTask< Void, Void, Void> {
             first=Integer.parseInt(tokenizer.nextToken());
             last=Integer.parseInt(tokenizer.nextToken());
             intv=Integer.parseInt(tokenizer.nextToken());
-            for(int j=first;j<=last;j+=intv) {
-                car = new MetroClass();
+            /*for(int j=first;j<=last;j+=intv) {
+                car = new SeatClass();
                 numstation = order.size();
                 for (int k = numstation - 1; k > 0; k--) {
                     stationmap.get(order.get(k)).addcar(linenum, updown, j, car);
                 }
-            }
+            }*/
             //add start,end time
             numstation=order.size();
             stationmap.get(order.get(0)).downstart=first;
             stationmap.get(order.get(0)).downlast=last;
             stationmap.get(order.get(0)).downintv=intv;
             for(int k=first;k<=last;k+=intv){
-                car=new MetroClass();
+                car=new SeatClass();
                 stationmap.get(order.get(0)).addcar(linenum,updown,k,car);
             }
             nujuk=first;
@@ -208,7 +208,7 @@ public class StationHolder extends AsyncTask< Void, Void, Void> {
                 stationmap.get(order.get(j)).downlast=nujukl;
                 stationmap.get(order.get(j)).downintv=intv;
                 for(int k=nujuk;k<=nujukl;k+=intv){
-                    car=new MetroClass();
+                    car=new SeatClass();
                     stationmap.get(order.get(0)).addcar(linenum,updown,k,car);
                 }
             }

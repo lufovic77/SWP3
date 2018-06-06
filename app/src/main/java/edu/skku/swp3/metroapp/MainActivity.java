@@ -45,11 +45,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-/*
-        final StationHolder station= new StationHolder(MainActivity.this);
-        station.execute();
+
+        final StationHolder stationdata= new StationHolder(MainActivity.this);
+        stationdata.execute();
         final List<String> selectedItems = new ArrayList<String>();
-*/
+
         departList=(Button)findViewById(R.id.depart_btn);
         arrivalList=(Button)findViewById(R.id.arrival_btn);
         for(i=0;i<7;i++){

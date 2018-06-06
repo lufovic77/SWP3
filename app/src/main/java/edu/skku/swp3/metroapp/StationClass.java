@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 
 public class StationClass {
-    HashMap<ArrayList<String>,MetroClass> stationtable;
+    HashMap<ArrayList<String>,SeatClass> stationtable;
     String stationname;
     public boolean isinterchange;
     public int upstart;
@@ -25,7 +25,7 @@ public class StationClass {
         isinterchange=false;
     }
 
-    public void addcar(int lane,String updown, int time,MetroClass car){
+    public void addcar(int lane,String updown, int time,SeatClass car){
         ArrayList<String> key=new ArrayList<>();
         key.add(Integer.toString(lane));//lane info
         key.add(updown);//up,down info
@@ -34,7 +34,7 @@ public class StationClass {
         return;
     }
 
-    public MetroClass getcar(int lane,String updown, int time){
+    public SeatClass getcar(int lane,String updown, int time){
         ArrayList<String> key=new ArrayList<>();
         key.add(Integer.toString(lane));//lane info
         key.add(updown);//up,down info
