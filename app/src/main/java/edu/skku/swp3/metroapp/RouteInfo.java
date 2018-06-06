@@ -60,10 +60,14 @@ public class RouteInfo extends Activity {
         this.si=this.minutes/60;
         this.bun=this.minutes%60;
         String text="";
-        text+=si+":"+bun;
-        deTime.setText(text);
+        if(si<10)
+            text+="0"+si+":"+bun;
+        else if(bun<10)
+            text+=si+":"+"0"+bun;
+        else //둘다 10보다 큰 경우
+            text+=si+":"+bun;
 
-        long now = System.currentTimeMillis();
+        deTime.setText(text);
 
         Toast.makeText(this, "!!"+this.minutes, Toast.LENGTH_LONG).show();
 
