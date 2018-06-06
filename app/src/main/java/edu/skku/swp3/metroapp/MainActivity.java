@@ -46,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final StationHolder station= new StationHolder(MainActivity.this);
+      /*  final StationHolder station= new StationHolder(MainActivity.this);
         station.execute();
-        final List<String> selectedItems = new ArrayList<String>();
+        final List<String> selectedItems = new ArrayList<String>();*/
 
         departList=(Button)findViewById(R.id.depart_btn);
         arrivalList=(Button)findViewById(R.id.arrival_btn);
@@ -149,15 +149,15 @@ public class MainActivity extends AppCompatActivity {
                 PathData path;
 
                 Log.i("input:", departure+","+arrival);
-                path = station.findpath(departure, arrival);
+          //      path = station.findpath(departure, arrival);
                 String text="";
-                int pathLength=(path.path.size());
+          /*      int pathLength=(path.path.size());
                 for(int i=0;i<path.path.size();i++){
                     text=text+path.path.get(i)+",";
                 }
                 Toast.makeText(MainActivity.this, "!!"+text, Toast.LENGTH_SHORT).show();
                 Log.i("done", text);
-                path.closest(station,900);
+              //  path.closest(station,900);
 
                 if(pathLength==2){//환승 없음
                     Intent intent = new Intent(MainActivity.this, RouteInfo.class);
@@ -168,12 +168,12 @@ public class MainActivity extends AppCompatActivity {
                    /* Intent intent = new Intent(getBaseContext(), RouteInfo2.class);
                     startActivity(intent);*/
 
-                }
+             /*   }
                 else{   //환승 2개
                     /*Intent intent = new Intent(getBaseContext(), RouteInfo3.class);
                     startActivity(intent);*/
 
-                }
+                //}
                 /*Intent intent = new Intent(getBaseContext(), RouteInfo.class);
                 startActivity(intent);*/
             }

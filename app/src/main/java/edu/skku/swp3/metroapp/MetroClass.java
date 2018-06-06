@@ -35,7 +35,7 @@ public class MetroClass extends Activity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.metro);
 
         //get intent(with 행성지 이름, 호차)=>textview설정해주기
 
@@ -133,13 +133,13 @@ public class MetroClass extends Activity{
         for(int i=0; i<5; i++){
             switch(car[present_car][i]){
                 case 0:
-                    SeatBtn[index].setBackgroundResource(R.drawable.Lseat_noone);
+                    SeatBtn[index].setBackgroundResource(R.drawable.lseat_noone);
                     break;
                 case 1:
-                    SeatBtn[index].setBackgroundResource(R.drawable.Lseat_someone);
+                    SeatBtn[index].setBackgroundResource(R.drawable.lseat_someone);
                     break;
                 case 2:
-                    SeatBtn[index].setBackgroundResource(R.drawable.Lseat_myself);
+                    SeatBtn[index].setBackgroundResource(R.drawable.lseat_myself);
                     break;
             }
         }
@@ -147,13 +147,13 @@ public class MetroClass extends Activity{
         for(int i=5; i<10; i++){
             switch(car[present_car][i]){
                 case 0:
-                    SeatBtn[index].setBackgroundResource(R.drawable.Rseat_noone);
+                    SeatBtn[index].setBackgroundResource(R.drawable.rseat_noone);
                     break;
                 case 1:
-                    SeatBtn[index].setBackgroundResource(R.drawable.Rseat_someone);
+                    SeatBtn[index].setBackgroundResource(R.drawable.rseat_someone);
                     break;
                 case 2:
-                    SeatBtn[index].setBackgroundResource(R.drawable.Rseat_myself);
+                    SeatBtn[index].setBackgroundResource(R.drawable.rseat_myself);
                     break;
             }
         }
@@ -174,10 +174,10 @@ public class MetroClass extends Activity{
                 car[present_car][index] = 2;
                 seat_myself = true;
                 if(index<5){
-                    SeatBtn[index].setBackgroundResource(R.drawable.Lseat_myself);
+                    SeatBtn[index].setBackgroundResource(R.drawable.lseat_myself);
                 }
                 else{
-                    SeatBtn[index].setBackgroundResource(R.drawable.Rseat_myself);
+                    SeatBtn[index].setBackgroundResource(R.drawable.rseat_myself);
                 }
                 return false;
             }
@@ -195,10 +195,10 @@ public class MetroClass extends Activity{
                 car[present_car][index] = 0;
                 seat_myself = false;    //앉은 자리 없다고 다시 표시
                 if(index<5){
-                    SeatBtn[index].setBackgroundResource(R.drawable.Lseat_noone);
+                    SeatBtn[index].setBackgroundResource(R.drawable.lseat_noone);
                 }
                 else{
-                    SeatBtn[index].setBackgroundResource(R.drawable.Rseat_noone);
+                    SeatBtn[index].setBackgroundResource(R.drawable.rseat_noone);
                 }
                 return false;
             }
