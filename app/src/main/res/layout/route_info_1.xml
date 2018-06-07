@@ -93,8 +93,12 @@
             android:layout_alignBottom="@+id/deTime"
             android:layout_marginStart="11dp"
             android:layout_toEndOf="@+id/deTime"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
             android:background="@drawable/round_button_darkgreen"
-            android:text="TextView" />
+            android:text="7" />
 
         <TextView
             android:id="@+id/arRound"
@@ -104,15 +108,18 @@
             android:layout_alignBottom="@+id/arName"
             android:layout_alignStart="@+id/deRound"
             android:background="@drawable/round_button_darkgreen"
-            android:text="TextView" />
+            android:text="" />
 
         <View
             android:id="@+id/vertical"
-            android:layout_width="12dp"
+            android:layout_width="30dp"
             android:layout_height="match_parent"
             android:layout_below="@+id/deRound"
             android:layout_above="@+id/arRound"
-            android:layout_toStartOf="@+id/deName"
+            android:layout_alignLeft="@+id/deRound"
+            android:layout_alignRight="@+id/deRound"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
             android:background="#3d7048" />
 
         <Button
@@ -124,6 +131,8 @@
             android:layout_marginTop="39dp"
             android:layout_toEndOf="@+id/depart"
             android:background="@drawable/balloon"
+            android:layout_toRightOf="@id/vertical"
+            android:layout_centerHorizontal="true"
             android:text="좌석 정보"
             android:textSize="18sp" />
 

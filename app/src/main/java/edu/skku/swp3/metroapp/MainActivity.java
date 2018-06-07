@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private Button ok;
     private int index;
     private int i;
+    public PathData path;
     //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,30 +147,26 @@ public class MainActivity extends AppCompatActivity {
         ok.setOnClickListener(new View.OnClickListener() {
                                   @Override
                                   public void onClick(View v) {
-                                      PathData path;
 
-/*                Log.i("input:", departure+","+arrival);
-                path = station.findpath(departure, arrival);
-                String text="";
-               int pathLength=(path.path.size());
-                for(int i=0;i<path.path.size();i++){
-                    text=text+path.path.get(i)+",";
-                }
-                Toast.makeText(MainActivity.this, "!!"+text, Toast.LENGTH_SHORT).show();
-                Log.i("done", text);
-              //  path.closest(station,900);
+                                      Log.i("input:", departure + "," + arrival);
+                                      path = stationdata.findpath(departure, arrival);
+                                      String text = "";
+                                      int pathLength = (path.path.size());
+                                      for (int i = 0; i < path.path.size(); i++) {
+                                          text = text + path.path.get(i) + ",";
+                                      }
+                                      Toast.makeText(MainActivity.this, "!!" + text, Toast.LENGTH_SHORT).show();
+                                      Log.i("done", text);
+                                      path.closest(stationdata, 900);
 
-                if(pathLength==2){//환승 없음
-                    Intent intent = new Intent(MainActivity.this, RouteInfo.class);
-                    intent.putExtra("path", text);
-                    startActivity(intent);
-                }
-                else if(pathLength==3){//환승 1개
-                   /* Intent intent = new Intent(getBaseContext(), RouteInfo2.class);
-                    startActivity(intent);*/
-
-                                  }/*
-                else{   //환승 2개
+                                      if (pathLength == 2) {//환승 없음
+                                          Intent intent = new Intent(MainActivity.this, RouteInfo.class);
+                                          intent.putExtra("pathInstance", path);
+                                          startActivity(intent);
+                                      } else if (pathLength == 3) {//환승 1개
+                                          //Intent intent = new Intent(getBaseContext(), RouteInfo2.class);
+                                          //startActivity(intent);
+                                      } else {   //환승 2개
                     /*Intent intent = new Intent(getBaseContext(), RouteInfo3.class);
                     startActivity(intent);*/
 
@@ -177,7 +174,8 @@ public class MainActivity extends AppCompatActivity {
 
                 /*Intent intent = new Intent(getBaseContext(), RouteInfo.class);
                 startActivity(intent);*/
-
+                                      }
+                                  }
         });
 
         btn[0].setOnClickListener(new View.OnClickListener() {

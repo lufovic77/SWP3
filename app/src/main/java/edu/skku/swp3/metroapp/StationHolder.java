@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,7 +18,7 @@ import java.util.StringTokenizer;
  * Created by TS on 2018. 5. 31..
  */
 
-class PathData{
+class PathData implements Serializable{
     public ArrayList<String> path;
     public int length;
     public String updown;

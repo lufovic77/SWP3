@@ -39,7 +39,7 @@ public class SeatClass {
     }
     public void updateseat(int carnum,int seatnum,int newval){
         try {
-            Socket soc = new Socket("localhost", 5000);
+            Socket soc = new Socket("192.168.0.11", 5000);
 
             OutputStream os = soc.getOutputStream ();
             DataOutputStream dos = new DataOutputStream(os);
