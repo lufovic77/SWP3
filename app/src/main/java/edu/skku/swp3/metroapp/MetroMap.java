@@ -12,6 +12,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.util.Scanner;
+
 import static android.content.ContentValues.TAG;
 
 public class MetroMap extends Activity{
@@ -71,6 +80,7 @@ public class MetroMap extends Activity{
         Intent intent=new Intent(this.getIntent());
     }
     //남태령, 사당, 총신, 남성, 내방, 낙성, 방배
+
     public void popUp(View v, int index){
         this.index=index;
         AlertDialog.Builder ad = new AlertDialog.Builder(MetroMap.this);

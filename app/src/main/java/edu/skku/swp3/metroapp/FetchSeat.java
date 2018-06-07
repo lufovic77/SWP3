@@ -20,6 +20,11 @@ public class FetchSeat extends AsyncTask<Void,Void,Void> {
       //  PrintWriter
     }
 
+    /*	PrintWriter pw = new PrintWriter(out);
+					pw.append("hi!");
+					pw.flush();
+					pw.close();
+					soc.close();*/
     @Override
     protected Void doInBackground(Void... voids) {
         String rec;

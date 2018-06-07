@@ -30,6 +30,8 @@ public class StationClass {
         key.add(Integer.toString(lane));//lane info
         key.add(updown);//up,down info
         key.add(Integer.toString(time));//car time
+        car.init(stationname,Integer.toString(lane),updown,Integer.toString(time));
+        //car.getseat(1);
         stationtable.put(key,car);
         return;
     }
