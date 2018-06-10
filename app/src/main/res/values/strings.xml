@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">MetroApp</string>
+    <string name="출발역">출발역</string>
+    <string name="도착역">도착역</string>
+    <string name="확인">확인</string>
+
+    <string name="총신대입구">총신대입구(이수)</string>
+    <string name="내방">내방</string>
+    <string name="남성">남성</string>
+    <string name="낙성대">낙성대</string>
+    <string name="방배">방배</string>
+    <string name="사당">사당</string>
+    <string name="남태령">남태령</string>
+
+    <string name="seat1">1</string>
+    <string name="seat2">2</string>
+    <string name="seat3">3</string>
+    <string name="seat4">4</string>
+    <string name="seat5">5</string>
+    <string name="창가">창가</string>
+    <string name="trainplaceholder">오이도행 1213</string>
+
 </resources>

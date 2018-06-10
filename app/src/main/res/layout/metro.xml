@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="오이도행 1213"
+            android:text="@string/trainplaceholder"
             android:textSize="20sp"
             android:textStyle="bold"
             android:gravity="center_horizontal|center_vertical"/>
@@ -49,7 +49,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="70dp"
             android:background="@drawable/lseat_noone"
-            android:text="1" />
+            android:text="@string/seat1" />
 
         <Button
             android:id="@+id/left_seat2"
@@ -59,7 +59,7 @@
             android:layout_alignStart="@+id/left_seat1"
             android:layout_marginTop="84dp"
             android:background="@drawable/lseat_noone"
-            android:text="2" />
+            android:text="@string/seat2" />
 
         <Button
             android:id="@+id/left_seat3"
@@ -68,7 +68,7 @@
             android:layout_alignStart="@+id/left_seat1"
             android:layout_centerVertical="true"
             android:background="@drawable/lseat_noone"
-            android:text="3" />
+            android:text="@string/seat3" />
 
         <Button
             android:id="@+id/left_seat4"
@@ -78,7 +78,7 @@
             android:layout_alignStart="@+id/left_seat1"
             android:layout_marginBottom="82dp"
             android:background="@drawable/lseat_noone"
-            android:text="4" />
+            android:text="@string/seat4" />
 
         <Button
             android:id="@+id/left_seat5"
@@ -87,7 +87,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/left_seat1"
             android:background="@drawable/lseat_noone"
-            android:text="5" />
+            android:text="@string/seat5" />
 
         <Button
             android:id="@+id/right_seat1"
@@ -97,7 +97,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginEnd="70dp"
             android:background="@drawable/rseat_noone"
-            android:text="1" />
+            android:text="@string/seat1" />
 
         <Button
             android:id="@+id/right_seat2"
@@ -106,7 +106,7 @@
             android:layout_alignStart="@+id/right_seat1"
             android:layout_alignTop="@+id/left_seat2"
             android:background="@drawable/rseat_noone"
-            android:text="2" />
+            android:text="@string/seat2" />
 
         <Button
             android:id="@+id/right_seat3"
@@ -115,7 +115,7 @@
             android:layout_alignStart="@+id/right_seat1"
             android:layout_centerVertical="true"
             android:background="@drawable/rseat_noone"
-            android:text="3" />
+            android:text="@string/seat3" />
 
         <Button
             android:id="@+id/right_seat4"
@@ -124,7 +124,7 @@
             android:layout_alignStart="@+id/right_seat1"
             android:layout_alignTop="@+id/left_seat4"
             android:background="@drawable/rseat_noone"
-            android:text="4" />
+            android:text="@string/seat4" />
 
         <Button
             android:id="@+id/right_seat5"
@@ -133,7 +133,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/right_seat1"
             android:background="@drawable/rseat_noone"
-            android:text="5" />
+            android:text="@string/seat5" />
 
         <TextView
             android:id="@+id/windowText1"
@@ -143,7 +143,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
             android:gravity="center_horizontal|center_vertical"
-            android:text="창가"
+            android:text="@string/창가"
             android:textSize="20sp" />
 
         <TextView
@@ -154,7 +154,7 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="15dp"
             android:gravity="center_horizontal|center_vertical"
-            android:text="창가"
+            android:text="@string/창가"
             android:textSize="20sp" />
 
         <View
