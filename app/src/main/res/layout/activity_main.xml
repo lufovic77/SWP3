@@ -22,14 +22,14 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
-                android:text="출발역" />
+                android:text="@string/출발역" />
 
             <Button
                 android:id="@+id/arrival_btn"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
-                android:text="도착역" />
+                android:text="@string/도착역" />
 
             <Button
                 android:id="@+id/ok"
@@ -38,7 +38,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
                 android:layout_weight="1"
-                android:text="확인" />
+                android:text="@string/확인" />
         </LinearLayout>
 
     </RelativeLayout>
@@ -76,7 +76,7 @@
             android:layout_above="@+id/naebang"
             android:layout_marginBottom="13dp"
             android:layout_toStartOf="@+id/naebang"
-            android:text="총신대입구(이수)"
+            android:text="@string/총신대입구"
             android:textSize="20sp" />
 
         <TextView
@@ -87,7 +87,7 @@
             android:layout_alignBaseline="@+id/chText"
             android:layout_alignBottom="@+id/chText"
             android:layout_alignStart="@+id/bandText"
-            android:text="내방" />
+            android:text="@string/내방" />
 
         <TextView
             android:id="@+id/sungText"
@@ -96,8 +96,10 @@
             android:layout_alignBaseline="@+id/chText"
             android:layout_alignBottom="@+id/chText"
             android:layout_toStartOf="@+id/saText"
-            android:text="남성"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/naksung"
+            android:text="@string/남성" />
 
         <TextView
             android:id="@+id/nakText"
@@ -106,7 +108,7 @@
             android:textSize="20sp"
             android:layout_above="@+id/naksung"
             android:layout_alignStart="@+id/sungText"
-            android:text="낙성대" />
+            android:text="@string/낙성대" />
 
         <TextView
             android:id="@+id/bandText"
@@ -116,7 +118,7 @@
             android:layout_above="@+id/bangbae"
             android:layout_marginStart="20dp"
             android:layout_toEndOf="@+id/bangbae"
-            android:text="방배" />
+            android:text="@string/방배" />
 
         <TextView
             android:id="@+id/saText"
@@ -125,7 +127,7 @@
             android:textSize="20sp"
             android:layout_above="@+id/sadang"
             android:layout_alignStart="@+id/namText"
-            android:text="사당" />
+            android:text="@string/사당" />
 
         <TextView
             android:id="@+id/namText"
@@ -135,7 +137,7 @@
             android:layout_alignBottom="@+id/nam"
             android:layout_marginStart="22dp"
             android:layout_toEndOf="@+id/nam"
-            android:text="남태령" />
+            android:text="@string/남태령" />
         <Button
             android:id="@+id/nam"
             android:layout_width="18dp"
