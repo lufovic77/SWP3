@@ -10,6 +10,31 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/deRound2"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_alignBaseline="@+id/deTime2"
+            android:layout_alignBottom="@+id/deTime2"
+            android:layout_alignStart="@+id/arRound"
+            android:background="@drawable/round_button_darkgreen"
+            android:gravity="center"
+            android:text="7"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/arRound2"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_alignBaseline="@+id/arTime2"
+            android:layout_alignBottom="@+id/arTime2"
+            android:layout_alignStart="@+id/deRound2"
+            android:background="@drawable/round_button_darkgreen"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/elapsed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,9 +85,8 @@
             android:id="@+id/arTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/deTime"
-            android:layout_marginBottom="107dp"
+            android:layout_alignBottom="@+id/arRound"
+            android:layout_toStartOf="@+id/deRound"
             android:text="TextView" />
 
         <TextView
@@ -77,6 +101,16 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/arName2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/arTime2"
+            android:layout_alignBottom="@+id/arTime2"
+            android:layout_alignStart="@+id/deName2"
+            android:text="TextView"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/arName"
             android:textStyle="bold"
             android:layout_width="wrap_content"
@@ -84,6 +118,16 @@
             android:layout_alignStart="@+id/deName"
             android:layout_alignTop="@+id/arTime"
             android:text="TextView" />
+
+        <TextView
+            android:id="@+id/deName2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/deTime2"
+            android:layout_alignBottom="@+id/deTime2"
+            android:layout_alignStart="@+id/arName"
+            android:text="에에에에ㅔ"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/deRound"
@@ -104,9 +148,8 @@
             android:id="@+id/arRound"
             android:layout_width="37dp"
             android:layout_height="37dp"
-            android:layout_alignBaseline="@+id/arName"
-            android:layout_alignBottom="@+id/arName"
             android:layout_alignStart="@+id/deRound"
+            android:layout_alignTop="@+id/seat"
             android:background="@drawable/round_button_darkgreen"
             android:text="" />
 
@@ -120,21 +163,50 @@
             android:layout_alignRight="@+id/deRound"
             android:layout_marginLeft="13dp"
             android:layout_marginRight="13dp"
-            android:background="#000000" />
+            android:background="#3d7048" />
+
+
+        <View
+            android:id="@+id/vertical2"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/deRound2"
+            android:layout_above="@+id/arRound2"
+            android:layout_alignLeft="@+id/deRound2"
+            android:layout_alignRight="@+id/deRound2"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:background="#3d7048" />
 
         <Button
             android:id="@+id/seat"
             android:layout_width="150dp"
             android:layout_height="70dp"
+            android:layout_alignStart="@+id/arrive"
             android:layout_below="@+id/deRound"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="39dp"
-            android:layout_toEndOf="@+id/depart"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="48dp"
             android:background="@drawable/balloon"
-            android:layout_toRightOf="@id/vertical"
-            android:layout_centerHorizontal="true"
             android:text="좌석 정보"
             android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/deTime2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/arTime"
+            android:layout_below="@+id/seat"
+            android:layout_marginTop="34dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/arTime2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/deTime2"
+            android:layout_marginBottom="21dp"
+            android:text="TextView" />
 
     </RelativeLayout>
 

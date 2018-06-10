@@ -93,12 +93,11 @@
             android:id="@+id/sungText"
             android:layout_width="150dp"
             android:layout_height="25dp"
-            android:textSize="20sp"
             android:layout_alignBaseline="@+id/chText"
             android:layout_alignBottom="@+id/chText"
-            android:layout_marginStart="16dp"
-            android:layout_toEndOf="@+id/naksung"
-            android:text="남성" />
+            android:layout_toStartOf="@+id/saText"
+            android:text="남성"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/nakText"
