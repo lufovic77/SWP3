@@ -20,6 +20,8 @@
         <activity android:name=".MainActivity" ></activity>
         <activity android:name=".MetroMap" ></activity>
         <activity android:name=".RouteInfo" ></activity>
+        <activity android:name=".RouteInfo2" ></activity>
+        <activity android:name=".RouteInfo3" ></activity>
         <activity android:name=".MetroClass"></activity>
 
 

@@ -64,39 +64,49 @@ public class RouteInfo extends Activity {
         ArrayList<String> station = new ArrayList<>();
         station = path.path;
 
-        deName.setText(station.get(0));
-        arName.setText(station.get(1));
+
+        String one=station.get(0);
+        String two;
+        if(path.length==3)
+            two=station.get(2);
+        else
+            two=station.get(1);
+        deName.setText(one);
+        arName.setText(two);
         for(int i=0;i<fourHo.length;i++){
-            if(fourHo[i].equals(station.get(0))) {
+            if(fourHo[i].equals(one)) {
                 for (int j = 0; j < fourHo.length; j++) {
-                    if(fourHo[j].equals(station.get(1))) {
+                    if(fourHo[j].equals(two)) {
                         deRound.setBackgroundResource(R.drawable.round_button_lightblue);
                         arRound.setBackgroundResource(R.drawable.round_button_lightblue);
                         vertical.setBackgroundColor(Color.parseColor("#00bfff"));
+                        deRound.setText("4");
                     }
                 }
             }
         }
 
         for(int i=0;i<twoHo.length;i++){
-            if(twoHo[i].equals(station.get(0))) {
+            if(twoHo[i].equals(one)) {
                 for (int j = 0; j < twoHo.length; j++) {
-                    if(twoHo[j].equals(station.get(1))) {
+                    if(twoHo[j].equals(two)) {
                         deRound.setBackgroundResource(R.drawable.round_button_green);
                         arRound.setBackgroundResource(R.drawable.round_button_green);
                         vertical.setBackgroundColor(Color.parseColor("#3cb371"));
+                        deRound.setText("2");
                     }
                 }
             }
         }
 
         for(int i=0;i<sevenHo.length;i++){
-            if(sevenHo[i].equals(station.get(0))) {
+            if(sevenHo[i].equals(one)) {
                 for (int j = 0; j < sevenHo.length; j++) {
-                    if(sevenHo[j].equals(station.get(1))) {
+                    if(sevenHo[j].equals(two)) {
                         deRound.setBackgroundResource(R.drawable.round_button_darkgreen);
                         arRound.setBackgroundResource(R.drawable.round_button_darkgreen);
                         vertical.setBackgroundColor(Color.parseColor("#6b8e23"));
+                        deRound.setText("7");
                     }
                 }
             }
@@ -122,7 +132,7 @@ public class RouteInfo extends Activity {
             text= "출발 "+"0" + si + ":" + bun;
             depart.setText(text);
             bun+=5;
-            text = "0" + si + ":" + bun;
+            text = "도착: " + si + ":" + bun;
             arrive.setText(text);
             text = "0" + si + ":" + bun;
             arTime.setText(text);
@@ -150,7 +160,6 @@ public class RouteInfo extends Activity {
             arTime.setText(text);
         }
 
-        Toast.makeText(this, "!!" + this.minutes, Toast.LENGTH_LONG).show();
     }
 
 }
