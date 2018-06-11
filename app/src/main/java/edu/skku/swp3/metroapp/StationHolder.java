@@ -62,6 +62,7 @@ public class StationHolder extends AsyncTask< Void, Void, Void> implements Seria
     HashMap<Set<String>,Integer> intervaltable;
     int numlines;
     Context ctxt;
+    String startstation,endstation;
     //ArrayList<String> stations;
     StationHolder(Context context){
         stationmap=new HashMap<>();
@@ -69,6 +70,10 @@ public class StationHolder extends AsyncTask< Void, Void, Void> implements Seria
         pathtable=new HashMap<>();
         intervaltable=new HashMap<>();
         ctxt=context;
+    }
+    public void setstations(String start, String end){
+        startstation=start;
+        endstation=end;
     }
     public int getintv(String s1,String s2){
         ArrayList<String> pair=new ArrayList<>();
@@ -86,10 +91,10 @@ public class StationHolder extends AsyncTask< Void, Void, Void> implements Seria
         return;
     }
 
-    public PathData findpath(String from,String to){        //스트링을 받아서
+    public PathData findpath(){        //스트링을 받아서
         ArrayList<String> target=new ArrayList<>();
-        target.add(from);
-        target.add(to);
+        target.add(startstation);
+        target.add(endstation);
         return pathtable.get(target);
     }
     public StationClass getstation(String name){
