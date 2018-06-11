@@ -35,6 +35,7 @@ public class RouteInfo2 extends Activity {
     private long si;
     private long bun;
     private PathData path;
+    private StationHolder stationdata;
     private String[] fourHo = {"남태령", "사당", "총신대입구"};
     private String[] sevenHo = {"총신대입구", "남성", "내방"};
     private String[] twoHo = {"낙성대", "사당", "방배"};
@@ -67,7 +68,8 @@ public class RouteInfo2 extends Activity {
         depart.setClickable(false);
         arrive.setClickable(false);
         Intent intent = getIntent();
-        path = (PathData) intent.getSerializableExtra("pathInstance");
+        stationdata = (StationHolder) intent.getSerializableExtra("stationInstance");
+        path=stationdata.findpath();
 
         time.setText("15 분");
         ArrayList<String> station;

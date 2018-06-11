@@ -63,8 +63,9 @@ public class RouteInfo extends Activity {
         depart.setClickable(false);
         arrive.setClickable(false);
         Intent intent = getIntent();
-        path = (PathData) intent.getExtras().getSerializable("pathInstance");
-        stationdata = (StationHolder) intent.getExtras().getSerializable("stationInstance");
+        stationdata = (StationHolder) intent.getSerializableExtra("stationInstance");
+        path=stationdata.findpath();
+        //stationdata = (StationHolder) intent.getExtras().getSerializable("stationInstance");
 
         time.setText("5 분");
         final ArrayList<String> station;
@@ -124,7 +125,7 @@ public class RouteInfo extends Activity {
         Calendar calendar = Calendar.getInstance();
         this.minutes = calendar.get(Calendar.MINUTE) + calendar.get(Calendar.HOUR_OF_DAY) * 60;
 
-        stationTime=path.closest(stationdata, minutes);
+      //  stationTime=path.closest(stationdata, minutes);
 
         //minutes=stationTime.get(0);
         this.si = this.minutes / 60;

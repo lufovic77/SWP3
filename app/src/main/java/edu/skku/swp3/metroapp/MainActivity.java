@@ -2,6 +2,7 @@ package edu.skku.swp3.metroapp;
 /**
  * Created by lufov, jinsun on 2018-06-04.
  */
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
+
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,32 +33,33 @@ public class MainActivity extends AppCompatActivity {
     private Button arrivalList; //도착지 선택 버튼
     private String departure; //출발지
     private String arrival;     //도착지
-    private boolean select_depart=false; //출발지 선택 햇는지 유무
-    private boolean select_arrive=false; //도착지 선택 했는지 유무
+    private boolean select_depart = false; //출발지 선택 햇는지 유무
+    private boolean select_arrive = false; //도착지 선택 했는지 유무
 
-    private Integer[] numBtnIDs = { R.id.nam, R.id.sadang, R.id.chongsin, R.id.namsung, R.id.naebang, R.id.naksung, R.id.bangbae, };
-    private String [] name ={"남태령", "사당", "총신대입구", "남성", "내방", "낙성대", "방배"};
+    private Integer[] numBtnIDs = {R.id.nam, R.id.sadang, R.id.chongsin, R.id.namsung, R.id.naebang, R.id.naksung, R.id.bangbae,};
+    private String[] name = {"남태령", "사당", "총신대입구", "남성", "내방", "낙성대", "방배"};
     private Button btn[] = new Button[10];
     private Button ok;
     private int index;
     private int i;
     public PathData path;
+
     //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final StationHolder stationdata= new StationHolder(MainActivity.this);
+        final StationHolder stationdata = new StationHolder(MainActivity.this);
         stationdata.execute();
         final List<String> selectedItems = new ArrayList<String>();
 
-        departList=(Button)findViewById(R.id.depart_btn);
-        arrivalList=(Button)findViewById(R.id.arrival_btn);
-        for(i=0;i<7;i++){
-            btn[i]=(Button)findViewById(numBtnIDs[i]);
+        departList = (Button) findViewById(R.id.depart_btn);
+        arrivalList = (Button) findViewById(R.id.arrival_btn);
+        for (i = 0; i < 7; i++) {
+            btn[i] = (Button) findViewById(numBtnIDs[i]);
         }
-        ok = (Button)findViewById(R.id.ok);
+        ok = (Button) findViewById(R.id.ok);
 
         //DrawView에 넣기
 /*        btnList.setOnClickListener(new View.OnClickListener() {
@@ -86,26 +89,28 @@ public class MainActivity extends AppCompatActivity {
                 final String[] items = new String[]{"남성", "충신대입구", "내방", "낙성대", "사당", "방배", "남태령"};
                 final int[] selectedIndex = {0};
                 AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
-                dialog .setTitle("출발역")
+                dialog.setTitle("출발역")
                         .setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) { selectedIndex[0] = which; } })
+                            public void onClick(DialogInterface dialog, int which) {
+                                selectedIndex[0] = which;
+                            }
+                        })
                         .setPositiveButton("선택", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                if(select_arrive) {
+                                if (select_arrive) {
                                     if (arrival.equals(items[selectedIndex[0]])) {
                                         Toast.makeText(MainActivity.this, "출발지와 도착지가 같습니다. \n다시 선택해주세요!", Toast.LENGTH_SHORT).show();
                                     } else {
                                         departList.setText(items[selectedIndex[0]]);
                                         departure = items[selectedIndex[0]];
-                                        select_depart=true;
+                                        select_depart = true;
                                     }
-                                }
-                                else{
+                                } else {
                                     departList.setText(items[selectedIndex[0]]);
                                     departure = items[selectedIndex[0]];
-                                    select_depart=true;
+                                    select_depart = true;
                                 }
                             }
 
@@ -118,26 +123,28 @@ public class MainActivity extends AppCompatActivity {
                 final String[] items = new String[]{"남성", "충신대입구", "내방", "낙성대", "사당", "방배", "남태령"};
                 final int[] selectedIndex = {0};
                 AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
-                dialog .setTitle("도착역")
+                dialog.setTitle("도착역")
                         .setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) { selectedIndex[0] = which; } })
+                            public void onClick(DialogInterface dialog, int which) {
+                                selectedIndex[0] = which;
+                            }
+                        })
                         .setPositiveButton("선택", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                if(select_depart) {
+                                if (select_depart) {
                                     if (departure.equals(items[selectedIndex[0]])) {
                                         Toast.makeText(MainActivity.this, "출발지와 도착지가 같습니다. \n다시 선택해주세요!", Toast.LENGTH_SHORT).show();
                                     } else {
                                         arrivalList.setText(items[selectedIndex[0]]);
                                         arrival = items[selectedIndex[0]];
-                                        select_arrive=true;
+                                        select_arrive = true;
                                     }
-                                }
-                                else{
+                                } else {
                                     arrivalList.setText(items[selectedIndex[0]]);
                                     arrival = items[selectedIndex[0]];
-                                    select_arrive=true;
+                                    select_arrive = true;
                                 }
                             }
                         }).create().show();
@@ -145,42 +152,36 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ok.setOnClickListener(new View.OnClickListener() {
-                                  @Override
-                                  public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
+                stationdata.setstations(departure, arrival);
+                path = stationdata.findpath();
+                String text = "";
+                int pathLength = (path.path.size());
+                Toast.makeText(MainActivity.this, "길이: " + pathLength, Toast.LENGTH_LONG).show();
+                for (int i = 0; i < path.path.size(); i++) {
+                    text = text + path.path.get(i) + ",";
+                }
+                Toast.makeText(MainActivity.this, "!!" + text, Toast.LENGTH_SHORT).show();
+                Log.i("done", text);
 
-                                      Log.i("input:", departure + "," + arrival);
-                                      path = stationdata.findpath(departure, arrival);
-                                      String text = "";
-                                      int pathLength = (path.path.size());
-                                      Toast.makeText(MainActivity.this, "길이: "+pathLength, Toast.LENGTH_LONG).show();
-                                      for (int i = 0; i < path.path.size(); i++) {
-                                          text = text + path.path.get(i) + ",";
-                                      }
-                                      Toast.makeText(MainActivity.this, "!!" + text, Toast.LENGTH_SHORT).show();
-                                      Log.i("done", text);
-
-                                      if (pathLength == 2) {//환승 없음
-                                          Intent intent = new Intent(MainActivity.this, RouteInfo.class);
-                                          Bundle bundle = new Bundle();
-                                          bundle.putSerializable("pathInstance", path);
-                                          bundle.putSerializable("stationInstance", stationdata);
-                                          intent.putExtras(bundle);
-                                          startActivity(intent);
-                                      //    intent.putExtra("stationInstance", stationdata);
-                                      }
-                                /*      else if (pathLength == 3) {//환승 1개
-                                          Intent intent = new Intent(getBaseContext(), RouteInfo2.class);
-                                          intent.putExtra("pathInstance", path);
-                                        //  intent.putExtra("stationInstance", stationdata);
-                                          startActivity(intent);
-                                      }
-                                      else {   //환승 2개
-                                          Intent intent = new Intent(getBaseContext(), RouteInfo3.class);
-                                          intent.putExtra("pathInstance", path);
-                                        //  intent.putExtra("stationInstance", stationdata);
-                                          startActivity(intent);
-                                      }*/
-                                  }
+                if (pathLength == 2) {//환승 없음
+                    Intent intent = new Intent(MainActivity.this, RouteInfo.class);
+                    intent.putExtra("stationInstance", stationdata);
+                    startActivity(intent);
+                    //    intent.putExtra("stationInstance", stationdata);
+                } else if (pathLength == 3) {//환승 1개
+                    Intent intent = new Intent(getBaseContext(), RouteInfo2.class);
+                    intent.putExtra("stationInstance", stationdata);
+                    //  intent.putExtra("stationInstance", stationdata);
+                    startActivity(intent);
+                } else {   //환승 2개
+                    Intent intent = new Intent(getBaseContext(), RouteInfo3.class);
+                    intent.putExtra("stationInstance", stationdata);
+                    //  intent.putExtra("stationInstance", stationdata);
+                    startActivity(intent);
+                }
+            }
         });
 
         btn[0].setOnClickListener(new View.OnClickListener() {
@@ -227,18 +228,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
     //남태령, 사당, 총신, 남성, 내방, 낙성, 방배
-    public void popUp(View v, int i){
-        index=i;
+    public void popUp(View v, int i) {
+        index = i;
         Log.d("popUp", String.valueOf(index));
         PopupMenu popup = new PopupMenu(getApplicationContext(), v);
 
         getMenuInflater().inflate(R.menu.option_menu, popup.getMenu());
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener(){
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
 
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.m1:
                         setDeparture();
                         break;
@@ -254,37 +256,35 @@ public class MainActivity extends AppCompatActivity {
         popup.show();
     }
 
-    public void setDeparture(){
-        if(select_arrive) {
+    public void setDeparture() {
+        if (select_arrive) {
             if (arrival.equals(name[index])) {
                 Toast.makeText(MainActivity.this, "출발지와 도착지가 같습니다. \n다시 선택해주세요!", Toast.LENGTH_SHORT).show();
             } else {
                 departList.setText(name[index]);
                 departure = name[index];
-                select_depart=true;
+                select_depart = true;
             }
-        }
-        else{
+        } else {
             departList.setText(name[index]);
             departure = name[index];
-            select_depart=true;
+            select_depart = true;
         }
     }
 
-    public void setArrival(){
-        if(select_depart) {
+    public void setArrival() {
+        if (select_depart) {
             if (departure.equals(name[index])) {
                 Toast.makeText(MainActivity.this, "출발지와 도착지가 같습니다. \n다시 선택해주세요!", Toast.LENGTH_SHORT).show();
             } else {
                 arrivalList.setText(name[index]);
                 arrival = name[index];
-                select_arrive=true;
+                select_arrive = true;
             }
-        }
-        else{
+        } else {
             arrivalList.setText(name[index]);
             arrival = name[index];
-            select_arrive=true;
+            select_arrive = true;
         }
     }
 
