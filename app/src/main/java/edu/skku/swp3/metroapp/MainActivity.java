@@ -161,22 +161,25 @@ public class MainActivity extends AppCompatActivity {
 
                                       if (pathLength == 2) {//환승 없음
                                           Intent intent = new Intent(MainActivity.this, RouteInfo.class);
-                                          intent.putExtra("pathInstance", path);
-                                          intent.putExtra("stationInstance", stationdata);
+                                          Bundle bundle = new Bundle();
+                                          bundle.putSerializable("pathInstance", path);
+                                          bundle.putSerializable("stationInstance", stationdata);
+                                          intent.putExtras(bundle);
                                           startActivity(intent);
+                                      //    intent.putExtra("stationInstance", stationdata);
                                       }
-                                      else if (pathLength == 3) {//환승 1개
+                                /*      else if (pathLength == 3) {//환승 1개
                                           Intent intent = new Intent(getBaseContext(), RouteInfo2.class);
                                           intent.putExtra("pathInstance", path);
-                                          intent.putExtra("stationInstance", stationdata);
+                                        //  intent.putExtra("stationInstance", stationdata);
                                           startActivity(intent);
                                       }
                                       else {   //환승 2개
                                           Intent intent = new Intent(getBaseContext(), RouteInfo3.class);
                                           intent.putExtra("pathInstance", path);
-                                          intent.putExtra("stationInstance", stationdata);
+                                        //  intent.putExtra("stationInstance", stationdata);
                                           startActivity(intent);
-                                      }
+                                      }*/
                                   }
         });
 
