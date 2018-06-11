@@ -45,6 +45,8 @@ public class RouteInfo3 extends Activity {
 
         elapsed = (TextView) findViewById(R.id.elapsed);
         time = (TextView) findViewById(R.id.time);
+        deRound = (TextView) findViewById(R.id.deRound);
+        arRound = (TextView) findViewById(R.id.arRound);
         deTime = (TextView) findViewById(R.id.deTime);
         arTime = (TextView) findViewById(R.id.arTime);
         deName = (TextView) findViewById(R.id.deName);

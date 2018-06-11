@@ -158,21 +158,23 @@ public class MainActivity extends AppCompatActivity {
                                       }
                                       Toast.makeText(MainActivity.this, "!!" + text, Toast.LENGTH_SHORT).show();
                                       Log.i("done", text);
-                                      path.closest(stationdata, 900);
 
                                       if (pathLength == 2) {//환승 없음
                                           Intent intent = new Intent(MainActivity.this, RouteInfo.class);
                                           intent.putExtra("pathInstance", path);
+                                          intent.putExtra("stationInstance", stationdata);
                                           startActivity(intent);
                                       }
                                       else if (pathLength == 3) {//환승 1개
                                           Intent intent = new Intent(getBaseContext(), RouteInfo2.class);
                                           intent.putExtra("pathInstance", path);
+                                          intent.putExtra("stationInstance", stationdata);
                                           startActivity(intent);
                                       }
                                       else {   //환승 2개
                                           Intent intent = new Intent(getBaseContext(), RouteInfo3.class);
                                           intent.putExtra("pathInstance", path);
+                                          intent.putExtra("stationInstance", stationdata);
                                           startActivity(intent);
                                       }
                                   }

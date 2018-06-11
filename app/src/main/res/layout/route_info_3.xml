@@ -88,8 +88,8 @@
             android:id="@+id/deRound2"
             android:layout_width="37dp"
             android:layout_height="37dp"
-            android:layout_alignBottom="@+id/deTime2"
             android:layout_alignStart="@+id/arRound"
+            android:layout_below="@+id/arRound"
             android:background="@drawable/round_button_darkgreen"
             android:gravity="center"
             android:text="7"
@@ -268,7 +268,8 @@
             android:id="@+id/deTime2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/seat"
+            android:layout_alignBaseline="@+id/deRound2"
+            android:layout_alignBottom="@+id/deRound2"
             android:layout_alignStart="@+id/arTime"
             android:text="TextView" />
 

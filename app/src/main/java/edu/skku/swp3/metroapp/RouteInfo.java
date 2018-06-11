@@ -29,11 +29,15 @@ public class RouteInfo extends Activity {
     private TextView deRound;
     private TextView arRound;
     private View vertical;
+    private Button seat;
 
-    private long minutes;
+    private int sTime;
+    private int laneNum;
+    private int minutes;
     private long si;
     private long bun;
     private PathData path;
+    private StationHolder stationdata;
     private String[] fourHo = {"남태령", "사당", "총신대입구"};
     private String[] sevenHo = {"총신대입구", "남성", "내방"};
     private String[] twoHo = {"낙성대", "사당", "방배"};
@@ -44,6 +48,7 @@ public class RouteInfo extends Activity {
         setContentView(R.layout.route_info_1);
         elapsed = (TextView) findViewById(R.id.elapsed);
         time = (TextView) findViewById(R.id.time);
+        seat = (Button) findViewById(R.id.seat);
 
         deTime = (TextView) findViewById(R.id.deTime);
         arTime = (TextView) findViewById(R.id.arTime);
@@ -52,17 +57,18 @@ public class RouteInfo extends Activity {
         deRound = (TextView) findViewById(R.id.deRound);
         arRound = (TextView) findViewById(R.id.arRound);
         vertical = (View) findViewById(R.id.vertical);
-
-
+//출발 시간 (분), 몇호선 , 둘다 integer
         depart = (Button) findViewById(R.id.depart);
         arrive = (Button) findViewById(R.id.arrive);
         depart.setClickable(false);
         arrive.setClickable(false);
         Intent intent = getIntent();
         path = (PathData) intent.getSerializableExtra("pathInstance");
+        stationdata = (StationHolder) intent.getSerializableExtra("stationInstance");
 
         time.setText("5 분");
-        ArrayList<String> station;
+        final ArrayList<String> station;
+        final ArrayList<Integer> stationTime;
         station = path.path;
 
         String one = station.get(0);
@@ -78,6 +84,7 @@ public class RouteInfo extends Activity {
                         arRound.setBackgroundResource(R.drawable.round_button_lightblue);
                         vertical.setBackgroundColor(Color.parseColor("#00bfff"));
                         deRound.setText("4");
+                        laneNum=4;
                     }
                 }
             }
@@ -91,6 +98,7 @@ public class RouteInfo extends Activity {
                         arRound.setBackgroundResource(R.drawable.round_button_green);
                         vertical.setBackgroundColor(Color.parseColor("#3cb371"));
                         deRound.setText("2");
+                        laneNum=2;
                     }
                 }
             }
@@ -104,6 +112,7 @@ public class RouteInfo extends Activity {
                         arRound.setBackgroundResource(R.drawable.round_button_darkgreen);
                         vertical.setBackgroundColor(Color.parseColor("#6b8e23"));
                         deRound.setText("7");
+                        laneNum=7;
                     }
                 }
             }
@@ -114,11 +123,10 @@ public class RouteInfo extends Activity {
 
         Calendar calendar = Calendar.getInstance();
         this.minutes = calendar.get(Calendar.MINUTE) + calendar.get(Calendar.HOUR_OF_DAY) * 60;
-        for (int i = 0; i < 10; i++) {
-            this.minutes++;
-            if (this.minutes % 5 == 0)
-                break;
-        }
+
+        stationTime=path.closest(stationdata, minutes);
+
+        minutes=stationTime.get(0);
         this.si = this.minutes / 60;
         this.bun = this.minutes % 60;
         String text = "";
@@ -126,13 +134,23 @@ public class RouteInfo extends Activity {
         deTime.setText(text);
         text = "출발 " + si + ":" + bun;
         depart.setText(text);
-        minutes += 5;
+        minutes = stationTime.get(1);
         this.si = this.minutes / 60;
         this.bun = this.minutes % 60;
         text = "도착: " + si + ":" + bun;
         arrive.setText(text);
         text = "0" + si + ":" + bun;
         arTime.setText(text);
+
+        seat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), MetroClass.class);
+                //stationdata.getstation(station.get(0)).getcar()
+                startActivity(intent);
+            }
+        });
     }
+
 }
 

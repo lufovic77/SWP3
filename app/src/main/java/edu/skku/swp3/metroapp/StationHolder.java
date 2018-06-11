@@ -55,7 +55,7 @@ class PathData implements Serializable{
         return times;
     }
 }
-public class StationHolder extends AsyncTask< Void, Void, Void> {
+public class StationHolder extends AsyncTask< Void, Void, Void> implements Serializable {
     HashMap<String,StationClass> stationmap;
     HashMap<Integer,ArrayList<String>> stationorder;
     HashMap<ArrayList<String>,PathData> pathtable;
