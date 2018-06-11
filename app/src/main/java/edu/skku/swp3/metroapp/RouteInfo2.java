@@ -28,15 +28,16 @@ public class RouteInfo2 extends Activity {
     private TextView arName, arName2;
     private TextView deRound, deRound2;
     private TextView arRound, arRound2;
-    private View vertical1,vertical2;
+    private View vertical1, vertical2;
 
+    private int flag,count;
     private long minutes;
     private long si;
     private long bun;
     private PathData path;
-    private String[] fourHo={"남태령", "사당", "총신대입구"};
-    private String[] sevenHo={"총신대입구", "남성", "내방"};
-    private String[] twoHo={"낙성대","사당", "방배"};
+    private String[] fourHo = {"남태령", "사당", "총신대입구"};
+    private String[] sevenHo = {"총신대입구", "남성", "내방"};
+    private String[] twoHo = {"낙성대", "사당", "방배"};
 
 
     @Override
@@ -61,15 +62,15 @@ public class RouteInfo2 extends Activity {
         arRound2 = (TextView) findViewById(R.id.arRound2);
         vertical2 = (View) findViewById(R.id.vertical2);
 
-        depart = (Button)findViewById(R.id.depart);
-        arrive = (Button)findViewById(R.id.arrive);
+        depart = (Button) findViewById(R.id.depart);
+        arrive = (Button) findViewById(R.id.arrive);
         depart.setClickable(false);
         arrive.setClickable(false);
         Intent intent = getIntent();
         path = (PathData) intent.getSerializableExtra("pathInstance");
 
         time.setText("15 분");
-        ArrayList<String> station = new ArrayList<>();
+        ArrayList<String> station;
         station = path.path;
 
         deName.setText(station.get(0));
@@ -81,75 +82,97 @@ public class RouteInfo2 extends Activity {
         deName2.setTextColor(Color.BLACK);
         arName2.setTextColor(Color.BLACK);
 
-        for(int i=0;i<fourHo.length;i++){
-            if(fourHo[i].equals(station.get(0))) {
+        flag=0;
+        count=0;
+        for (int i = 0; i < fourHo.length; i++) {
+            if (fourHo[i].equals(station.get(0))) {
                 for (int j = 0; j < fourHo.length; j++) {
-                    if(fourHo[j].equals(station.get(1))) {
+                    if (fourHo[j].equals(station.get(1))) {
                         deRound.setBackgroundResource(R.drawable.round_button_lightblue);
                         arRound.setBackgroundResource(R.drawable.round_button_lightblue);
                         vertical1.setBackgroundColor(Color.parseColor("#00bfff"));
                         deRound.setText("4");
+                        count++;
                     }
                 }
             }
 
-            if(fourHo[i].equals(station.get(1))) {
+            if (fourHo[i].equals(station.get(1))) {
                 for (int j = 0; j < fourHo.length; j++) {
-                    if(fourHo[j].equals(station.get(2))) {
+                    if (fourHo[j].equals(station.get(2))) {
                         deRound2.setBackgroundResource(R.drawable.round_button_lightblue);
                         arRound2.setBackgroundResource(R.drawable.round_button_lightblue);
                         vertical2.setBackgroundColor(Color.parseColor("#00bfff"));
                         deRound2.setText("4");
+                        count++;
                     }
                 }
             }
-
+        }
+        if(count==2){
+            flag=1;
+            time.setText("10분");
         }
 
-        for(int i=0;i<twoHo.length;i++){
-            if(twoHo[i].equals(station.get(0))) {
+
+        count=0;
+        for (int i = 0; i < twoHo.length; i++) {
+            if (twoHo[i].equals(station.get(0))) {
                 for (int j = 0; j < twoHo.length; j++) {
-                    if(twoHo[j].equals(station.get(1))) {
+                    if (twoHo[j].equals(station.get(1))) {
                         deRound.setBackgroundResource(R.drawable.round_button_green);
                         arRound.setBackgroundResource(R.drawable.round_button_green);
                         vertical1.setBackgroundColor(Color.parseColor("#3cb371"));
                         deRound.setText("2");
+                        count++;
                     }
                 }
             }
-            if(twoHo[i].equals(station.get(1))) {
+            if (twoHo[i].equals(station.get(1))) {
                 for (int j = 0; j < twoHo.length; j++) {
-                    if(twoHo[j].equals(station.get(2))) {
+                    if (twoHo[j].equals(station.get(2))) {
                         deRound2.setBackgroundResource(R.drawable.round_button_green);
                         arRound2.setBackgroundResource(R.drawable.round_button_green);
                         vertical2.setBackgroundColor(Color.parseColor("#3cb371"));
                         deRound2.setText("2");
+                        count++;
                     }
                 }
             }
         }
+        if(count==2){
+            flag=1;
+            time.setText("10분");
+        }
 
-        for(int i=0;i<sevenHo.length;i++){
-            if(sevenHo[i].equals(station.get(0))) {
+        count=0;
+        for (int i = 0; i < sevenHo.length; i++) {
+            if (sevenHo[i].equals(station.get(0))) {
                 for (int j = 0; j < sevenHo.length; j++) {
-                    if(sevenHo[j].equals(station.get(1))) {
+                    if (sevenHo[j].equals(station.get(1))) {
                         deRound.setBackgroundResource(R.drawable.round_button_darkgreen);
                         arRound.setBackgroundResource(R.drawable.round_button_darkgreen);
                         vertical1.setBackgroundColor(Color.parseColor("#6b8e23"));
                         deRound.setText("7");
+                        count++;
                     }
                 }
             }
-            if(sevenHo[i].equals(station.get(1))) {
+            if (sevenHo[i].equals(station.get(1))) {
                 for (int j = 0; j < sevenHo.length; j++) {
-                    if(sevenHo[j].equals(station.get(2))) {
+                    if (sevenHo[j].equals(station.get(2))) {
                         deRound2.setBackgroundResource(R.drawable.round_button_darkgreen);
                         arRound2.setBackgroundResource(R.drawable.round_button_darkgreen);
                         vertical2.setBackgroundColor(Color.parseColor("#6b8e23"));
                         deRound2.setText("7");
+                        count++;
                     }
                 }
             }
+        }
+        if(count==2){
+            flag=1;
+            time.setText("10분");
         }
         Calendar calendar = Calendar.getInstance();
         this.minutes = calendar.get(Calendar.MINUTE) + calendar.get(Calendar.HOUR_OF_DAY) * 60;
@@ -161,72 +184,54 @@ public class RouteInfo2 extends Activity {
         this.si = this.minutes / 60;
         this.bun = this.minutes % 60;
         String text = "";
-        if (si < 10) {
-            text = "0" + si + ":" + bun;
+
+        if(flag!=1) {
+            text = si + ":" + bun;
             deTime.setText(text);
-            text= "출발 "+"0" + si + ":" + bun;
+            text = "출발 " + si + ":" + bun;
             depart.setText(text);
-            bun+=5;
+            minutes += 5;
+            this.si = this.minutes / 60;
+            this.bun = this.minutes % 60;
             text = "도착: " + si + ":" + bun;
             arrive.setText(text);
-            text = "0" + si + ":" + bun;
+            text = si + ":" + bun;
             arTime.setText(text);
 
-            bun+=5;
-
-            text = "0" + si + ":" + bun;
+            minutes += 5;
+            this.si = this.minutes / 60;
+            this.bun = this.minutes % 60;
+            text = si + ":" + bun;
             deTime2.setText(text);
-            bun+=5;
+            minutes += 5;
+            this.si = this.minutes / 60;
+            this.bun = this.minutes % 60;
             text = "도착" + si + ":" + bun;
             arrive.setText(text);
-            text = "0" + si + ":" + bun;
+            text = si + ":" + bun;
             arTime2.setText(text);
         }
-        else if (bun < 10) {
-            text ="출발: "+ si + ":" + "0" + bun;
-            depart.setText(text);
-            text = si + ":" + "0" + bun;
-            deTime.setText(text);
-            bun+=5;
-            text ="도착: "+ si + ":" + "0" + bun;
-            arrive.setText(text);
-            text = si + ":" + "0" + bun;
-            arTime.setText(text);
-            bun+=5;
-
-
-            text = si + ":" + "0" + bun;
-            deTime2.setText(text);
-            bun+=5;
-            text ="도착: "+ si + ":" + "0" + bun;
-            arrive.setText(text);
-            text = si + ":" + "0" + bun;
-            arTime2.setText(text);
-            bun+=5;
-        }
-        else { //둘다 10보다 큰 경우
-            text = "출발: "+si + ":" + bun;
-            depart.setText(text);
+        else{   //flag==2
             text = si + ":" + bun;
             deTime.setText(text);
-            bun+=5;
-            text = "도착: "+si + ":" + bun;
-            arrive.setText(text);
+            text = "출발 " + si + ":" + bun;
+            depart.setText(text);
+            minutes += 5;
+            this.si = this.minutes / 60;
+            this.bun = this.minutes % 60;
             text = si + ":" + bun;
             arTime.setText(text);
-            bun+=5;
 
-
-            text = "출발: "+si + ":" + bun;
-            depart.setText(text);
             text = si + ":" + bun;
             deTime2.setText(text);
-            bun+=5;
-            text = "도착: "+si + ":" + bun;
+            minutes += 5;
+            this.si = this.minutes / 60;
+            this.bun = this.minutes % 60;
+            text = "도착: " + si + ":" + bun;
             arrive.setText(text);
             text = si + ":" + bun;
             arTime2.setText(text);
-            bun+=5;
+
         }
     }
 

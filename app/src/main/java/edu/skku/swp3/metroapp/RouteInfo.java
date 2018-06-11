@@ -34,9 +34,9 @@ public class RouteInfo extends Activity {
     private long si;
     private long bun;
     private PathData path;
-    private String[] fourHo={"남태령", "사당", "총신대입구"};
-    private String[] sevenHo={"총신대입구", "남성", "내방"};
-    private String[] twoHo={"낙성대","사당", "방배"};
+    private String[] fourHo = {"남태령", "사당", "총신대입구"};
+    private String[] sevenHo = {"총신대입구", "남성", "내방"};
+    private String[] twoHo = {"낙성대", "사당", "방배"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,30 +53,27 @@ public class RouteInfo extends Activity {
         arRound = (TextView) findViewById(R.id.arRound);
         vertical = (View) findViewById(R.id.vertical);
 
-        depart = (Button)findViewById(R.id.depart);
-        arrive = (Button)findViewById(R.id.arrive);
+
+        depart = (Button) findViewById(R.id.depart);
+        arrive = (Button) findViewById(R.id.arrive);
         depart.setClickable(false);
         arrive.setClickable(false);
         Intent intent = getIntent();
         path = (PathData) intent.getSerializableExtra("pathInstance");
 
         time.setText("5 분");
-        ArrayList<String> station = new ArrayList<>();
+        ArrayList<String> station;
         station = path.path;
 
-
-        String one=station.get(0);
+        String one = station.get(0);
         String two;
-        if(path.length==3)
-            two=station.get(2);
-        else
-            two=station.get(1);
+        two = station.get(1);
         deName.setText(one);
         arName.setText(two);
-        for(int i=0;i<fourHo.length;i++){
-            if(fourHo[i].equals(one)) {
+        for (int i = 0; i < fourHo.length; i++) {
+            if (fourHo[i].equals(one)) {
                 for (int j = 0; j < fourHo.length; j++) {
-                    if(fourHo[j].equals(two)) {
+                    if (fourHo[j].equals(two)) {
                         deRound.setBackgroundResource(R.drawable.round_button_lightblue);
                         arRound.setBackgroundResource(R.drawable.round_button_lightblue);
                         vertical.setBackgroundColor(Color.parseColor("#00bfff"));
@@ -86,10 +83,10 @@ public class RouteInfo extends Activity {
             }
         }
 
-        for(int i=0;i<twoHo.length;i++){
-            if(twoHo[i].equals(one)) {
+        for (int i = 0; i < twoHo.length; i++) {
+            if (twoHo[i].equals(one)) {
                 for (int j = 0; j < twoHo.length; j++) {
-                    if(twoHo[j].equals(two)) {
+                    if (twoHo[j].equals(two)) {
                         deRound.setBackgroundResource(R.drawable.round_button_green);
                         arRound.setBackgroundResource(R.drawable.round_button_green);
                         vertical.setBackgroundColor(Color.parseColor("#3cb371"));
@@ -99,10 +96,10 @@ public class RouteInfo extends Activity {
             }
         }
 
-        for(int i=0;i<sevenHo.length;i++){
-            if(sevenHo[i].equals(one)) {
+        for (int i = 0; i < sevenHo.length; i++) {
+            if (sevenHo[i].equals(one)) {
                 for (int j = 0; j < sevenHo.length; j++) {
-                    if(sevenHo[j].equals(two)) {
+                    if (sevenHo[j].equals(two)) {
                         deRound.setBackgroundResource(R.drawable.round_button_darkgreen);
                         arRound.setBackgroundResource(R.drawable.round_button_darkgreen);
                         vertical.setBackgroundColor(Color.parseColor("#6b8e23"));
@@ -111,7 +108,6 @@ public class RouteInfo extends Activity {
                 }
             }
         }
-
 
         deName.setTextColor(Color.BLACK);
         arName.setTextColor(Color.BLACK);
@@ -126,41 +122,17 @@ public class RouteInfo extends Activity {
         this.si = this.minutes / 60;
         this.bun = this.minutes % 60;
         String text = "";
-        if (si < 10) {
-            text = "0" + si + ":" + bun;
-            deTime.setText(text);
-            text= "출발 "+"0" + si + ":" + bun;
-            depart.setText(text);
-            bun+=5;
-            text = "도착: " + si + ":" + bun;
-            arrive.setText(text);
-            text = "0" + si + ":" + bun;
-            arTime.setText(text);
-        }
-        else if (bun < 10) {
-            text ="출발: "+ si + ":" + "0" + bun;
-            depart.setText(text);
-            text = si + ":" + "0" + bun;
-            deTime.setText(text);
-            bun+=5;
-            text ="도착: "+ si + ":" + "0" + bun;
-            arrive.setText(text);
-            text = si + ":" + "0" + bun;
-            arTime.setText(text);
-        }
-        else { //둘다 10보다 큰 경우
-            text = "출발: "+si + ":" + bun;
-            depart.setText(text);
-            text = si + ":" + bun;
-            deTime.setText(text);
-            bun+=5;
-            text = "도착: "+si + ":" + bun;
-            arrive.setText(text);
-            text = si + ":" + bun;
-            arTime.setText(text);
-        }
-
+        text = si + ":" + bun;
+        deTime.setText(text);
+        text = "출발 " + si + ":" + bun;
+        depart.setText(text);
+        minutes += 5;
+        this.si = this.minutes / 60;
+        this.bun = this.minutes % 60;
+        text = "도착: " + si + ":" + bun;
+        arrive.setText(text);
+        text = "0" + si + ":" + bun;
+        arTime.setText(text);
     }
-
 }
 

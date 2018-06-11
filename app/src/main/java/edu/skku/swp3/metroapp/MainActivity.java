@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
                                       path = stationdata.findpath(departure, arrival);
                                       String text = "";
                                       int pathLength = (path.path.size());
+                                      Toast.makeText(MainActivity.this, "길이: "+pathLength, Toast.LENGTH_LONG).show();
                                       for (int i = 0; i < path.path.size(); i++) {
                                           text = text + path.path.get(i) + ",";
                                       }
