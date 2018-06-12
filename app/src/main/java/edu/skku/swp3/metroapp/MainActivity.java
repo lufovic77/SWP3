@@ -208,25 +208,24 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                 if (pathLength == 2) {//환승 없음
                     Intent intent = new Intent(MainActivity.this, RouteInfo.class);
                     PathPacket pk=path.createpacket(stationdata,minutes,laneNum);
-                   // Bundle bundle = new Bundle();
-                    //bundle.putSerializable("stationInstance", stationdata);
-                    //intent.putExtras(bundle);
                     Bundle bundle = new Bundle();
-                   // intent.putExtra("pathInstance",  path);
                     bundle.putSerializable("pathPacket", pk);
-                    //bundle.putSerializable("stationInstance", stationdata);
                     intent.putExtras(bundle);
                     startActivity(intent);
                     //    intent.putExtra("stationInstance", stationdata);
                 } else if (pathLength == 3) {//환승 1개
                     Intent intent = new Intent(getBaseContext(), RouteInfo2.class);
-                    intent.putExtra("stationInstance", stationdata);
-                    //  intent.putExtra("stationInstance", stationdata);
+                    PathPacket pk=path.createpacket(stationdata,minutes,laneNum);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("pathPacket", pk);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 } else {   //환승 2개
                     Intent intent = new Intent(getBaseContext(), RouteInfo3.class);
-                    intent.putExtra("stationInstance", stationdata);
-                    //  intent.putExtra("stationInstance", stationdata);
+                    PathPacket pk=path.createpacket(stationdata,minutes,laneNum);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("pathPacket", pk);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
             }

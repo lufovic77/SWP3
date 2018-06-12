@@ -39,7 +39,7 @@ public class RouteInfo2 extends Activity {
     private String[] fourHo = {"남태령", "사당", "총신대입구"};
     private String[] sevenHo = {"총신대입구", "남성", "내방"};
     private String[] twoHo = {"낙성대", "사당", "방배"};
-
+    private PathPacket pk;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,12 +68,13 @@ public class RouteInfo2 extends Activity {
         depart.setClickable(false);
         arrive.setClickable(false);
         Intent intent = getIntent();
-        stationdata = (StationHolder) intent.getSerializableExtra("stationInstance");
-        path=stationdata.findpath();
+        pk= (PathPacket) intent.getSerializableExtra("pathPacket");
 
-        time.setText("15 분");
-        ArrayList<String> station;
-        station = path.path;
+        time.setText("10 분");
+        final ArrayList<String> station;
+        final ArrayList<Integer> stationTime;
+        station = pk.getpath();
+        stationTime=pk.gettime();
 
         deName.setText(station.get(0));
         arName.setText(station.get(1));
@@ -115,7 +116,6 @@ public class RouteInfo2 extends Activity {
             flag=1;
             time.setText("10분");
         }
-
 
         count=0;
         for (int i = 0; i < twoHo.length; i++) {
@@ -176,13 +176,8 @@ public class RouteInfo2 extends Activity {
             flag=1;
             time.setText("10분");
         }
-        Calendar calendar = Calendar.getInstance();
-        this.minutes = calendar.get(Calendar.MINUTE) + calendar.get(Calendar.HOUR_OF_DAY) * 60;
-        for (int i = 0; i < 10; i++) {
-            this.minutes++;
-            if (this.minutes % 5 == 0)
-                break;
-        }
+
+        minutes=stationTime.get(0);
         this.si = this.minutes / 60;
         this.bun = this.minutes % 60;
         String text = "";
@@ -192,7 +187,7 @@ public class RouteInfo2 extends Activity {
             deTime.setText(text);
             text = "출발 " + si + ":" + bun;
             depart.setText(text);
-            minutes += 5;
+            minutes =stationTime.get(1);
             this.si = this.minutes / 60;
             this.bun = this.minutes % 60;
             text = "도착: " + si + ":" + bun;
@@ -200,12 +195,12 @@ public class RouteInfo2 extends Activity {
             text = si + ":" + bun;
             arTime.setText(text);
 
-            minutes += 5;
+            minutes = stationTime.get(1);
             this.si = this.minutes / 60;
             this.bun = this.minutes % 60;
             text = si + ":" + bun;
             deTime2.setText(text);
-            minutes += 5;
+            minutes = stationTime.get(2);
             this.si = this.minutes / 60;
             this.bun = this.minutes % 60;
             text = "도착" + si + ":" + bun;
