@@ -5,6 +5,7 @@ package edu.skku.swp3.metroapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -167,7 +169,11 @@ public class MainActivity extends AppCompatActivity {
 
                 if (pathLength == 2) {//환승 없음
                     Intent intent = new Intent(MainActivity.this, RouteInfo.class);
-                    intent.putExtra("stationInstance", stationdata);
+                    PathPacket pk=path.createpacket();
+                   // Bundle bundle = new Bundle();
+                    //bundle.putSerializable("stationInstance", stationdata);
+                    //intent.putExtras(bundle);
+                    intent.putExtra("pathInstance",  pk);
                     startActivity(intent);
                     //    intent.putExtra("stationInstance", stationdata);
                 } else if (pathLength == 3) {//환승 1개

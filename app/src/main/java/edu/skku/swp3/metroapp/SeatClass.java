@@ -5,13 +5,14 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.net.Socket;
 
 /**
  * Created by TS on 06/06/2018.
  */
 
-public class SeatClass {
+public class SeatClass implements Serializable {
 
 
     //car[0] = 비고

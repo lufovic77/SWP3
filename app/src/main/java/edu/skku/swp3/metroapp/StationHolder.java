@@ -2,11 +2,13 @@ package edu.skku.swp3.metroapp;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Parcelable;
 import android.util.Log;
 import android.widget.Toast;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -20,11 +22,15 @@ import java.util.StringTokenizer;
 
 class PathData implements Serializable{
     public ArrayList<String> path;
+    public HashMap<String,StationClass> stationmp;
     public int length;
     public String updown;
     PathData(String ud){
         path=new ArrayList<>();
         updown=ud;
+    }
+    PathPacket createpacket(){
+        return new PathPacket(path,stationmp,length,updown);
     }
     void addstation(String station){
         path.add(station);
@@ -55,7 +61,7 @@ class PathData implements Serializable{
         return times;
     }
 }
-public class StationHolder extends AsyncTask< Void, Void, Void> implements Serializable {
+public class StationHolder extends AsyncTask< Void, Void, Void> implements Serializable{
     HashMap<String,StationClass> stationmap;
     HashMap<Integer,ArrayList<String>> stationorder;
     HashMap<ArrayList<String>,PathData> pathtable;
@@ -95,7 +101,9 @@ public class StationHolder extends AsyncTask< Void, Void, Void> implements Seria
         ArrayList<String> target=new ArrayList<>();
         target.add(startstation);
         target.add(endstation);
-        return pathtable.get(target);
+        PathData returner=pathtable.get(target);
+        returner.stationmp=stationmap;
+        return returner;
     }
     public StationClass getstation(String name){
         return stationmap.get(name);

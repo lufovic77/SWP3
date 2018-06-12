@@ -1,5 +1,6 @@
 package edu.skku.swp3.metroapp;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,7 +9,7 @@ import java.util.HashMap;
  */
 
 
-public class StationClass {
+public class StationClass implements Serializable {
     HashMap<ArrayList<String>,SeatClass> stationtable;
     String stationname;
     public boolean isinterchange;
