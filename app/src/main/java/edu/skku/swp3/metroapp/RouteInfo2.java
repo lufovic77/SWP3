@@ -29,6 +29,7 @@ public class RouteInfo2 extends Activity {
     private TextView deRound, deRound2;
     private TextView arRound, arRound2;
     private View vertical1, vertical2;
+    private Button seat;
 
     private int flag,count;
     private long minutes;
@@ -40,6 +41,7 @@ public class RouteInfo2 extends Activity {
     private String[] sevenHo = {"총신대입구", "남성", "내방"};
     private String[] twoHo = {"낙성대", "사당", "방배"};
     private PathPacket pk;
+    private SeatClass sc;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class RouteInfo2 extends Activity {
         setContentView(R.layout.route_info_2);
         elapsed = (TextView) findViewById(R.id.elapsed);
         time = (TextView) findViewById(R.id.time);
+        seat = (Button) findViewById(R.id.seat);
         deTime = (TextView) findViewById(R.id.deTime);
         arTime = (TextView) findViewById(R.id.arTime);
         deName = (TextView) findViewById(R.id.deName);
@@ -230,6 +233,12 @@ public class RouteInfo2 extends Activity {
             arTime2.setText(text);
 
         }
+        seat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 }

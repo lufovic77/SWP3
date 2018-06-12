@@ -43,6 +43,7 @@ public class RouteInfo extends Activity {
     private String[] sevenHo = {"총신대입구", "남성", "내방"};
     private String[] twoHo = {"낙성대", "사당", "방배"};
     private PathPacket pk;
+    private SeatClass sc;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,8 +148,12 @@ public class RouteInfo extends Activity {
         seat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sc = (SeatClass) pk.getseats();
+
                 Intent intent = new Intent(getBaseContext(), MetroClass.class);
-                //stationdata.getstation(station.get(0)).getcar()
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("seatInstance", sc);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
