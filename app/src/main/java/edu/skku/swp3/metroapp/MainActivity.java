@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                     if (fourHo[i].equals(departure)) {
                         for (int j = 0; j < fourHo.length; j++) {
                             if (fourHo[j].equals(arrival)) {
-                                laneNum=4;
+                                laneNum=3;
                             }
                         }
                     }
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements Serializable{
                     if (sevenHo[i].equals(departure)) {
                         for (int j = 0; j < sevenHo.length; j++) {
                             if (sevenHo[j].equals(arrival)) {
-                                laneNum=7;
+                                laneNum=1;
                             }
                         }
                     }
