@@ -5,6 +5,7 @@ package edu.skku.swp3.metroapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Parcelable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -19,13 +20,14 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
 import android.view.View;
-
-public class MainActivity extends AppCompatActivity {
+@SuppressWarnings("serial")
+public class MainActivity extends AppCompatActivity implements Serializable{
     private Button map;
     private Button btnList; //출발시간 선택 버튼
     private TextView departText;    //출발 시간 텍스트뷰 선택시 내용 바뀜
@@ -40,11 +42,17 @@ public class MainActivity extends AppCompatActivity {
 
     private Integer[] numBtnIDs = {R.id.nam, R.id.sadang, R.id.chongsin, R.id.namsung, R.id.naebang, R.id.naksung, R.id.bangbae,};
     private String[] name = {"남태령", "사당", "총신대입구", "남성", "내방", "낙성대", "방배"};
+    private String[] fourHo = {"남태령", "사당", "총신대입구"};
+    private String[] sevenHo = {"총신대입구", "남성", "내방"};
+    private String[] twoHo = {"낙성대", "사당", "방배"};
     private Button btn[] = new Button[10];
     private Button ok;
     private int index;
     private int i;
+    private int minutes;
+    private int laneNum;
     public PathData path;
+    public StationHolder stationdata;
 
     //
     @Override
@@ -52,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final StationHolder stationdata = new StationHolder(MainActivity.this);
+        stationdata = new StationHolder(MainActivity.this);
         stationdata.execute();
         final List<String> selectedItems = new ArrayList<String>();
 
@@ -157,6 +165,34 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 stationdata.setstations(departure, arrival);
+
+                for (int i = 0; i < fourHo.length; i++) {
+                    if (fourHo[i].equals(departure)) {
+                        for (int j = 0; j < fourHo.length; j++) {
+                            if (fourHo[j].equals(arrival)) {
+                                laneNum=4;
+                            }
+                        }
+                    }
+                }
+                for (int i = 0; i < twoHo.length; i++) {
+                    if (twoHo[i].equals(departure)) {
+                        for (int j = 0; j < twoHo.length; j++) {
+                            if (twoHo[j].equals(arrival)) {
+                                laneNum=2;
+                            }
+                        }
+                    }
+                }
+                for (int i = 0; i < sevenHo.length; i++) {
+                    if (sevenHo[i].equals(departure)) {
+                        for (int j = 0; j < sevenHo.length; j++) {
+                            if (sevenHo[j].equals(arrival)) {
+                                laneNum=7;
+                            }
+                        }
+                    }
+                }
                 path = stationdata.findpath();
                 String text = "";
                 int pathLength = (path.path.size());
@@ -166,14 +202,20 @@ public class MainActivity extends AppCompatActivity {
                 }
                 Toast.makeText(MainActivity.this, "!!" + text, Toast.LENGTH_SHORT).show();
                 Log.i("done", text);
+                Calendar calendar = Calendar.getInstance();
+                minutes = calendar.get(Calendar.MINUTE) + calendar.get(Calendar.HOUR_OF_DAY) * 60;
 
                 if (pathLength == 2) {//환승 없음
                     Intent intent = new Intent(MainActivity.this, RouteInfo.class);
-                    PathPacket pk=path.createpacket();
+                    PathPacket pk=path.createpacket(stationdata,minutes,laneNum);
                    // Bundle bundle = new Bundle();
                     //bundle.putSerializable("stationInstance", stationdata);
                     //intent.putExtras(bundle);
-                    intent.putExtra("pathInstance",  pk);
+                    Bundle bundle = new Bundle();
+                   // intent.putExtra("pathInstance",  path);
+                    bundle.putSerializable("pathPacket", pk);
+                    //bundle.putSerializable("stationInstance", stationdata);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                     //    intent.putExtra("stationInstance", stationdata);
                 } else if (pathLength == 3) {//환승 1개

@@ -11,7 +11,7 @@ import java.net.Socket;
 /**
  * Created by TS on 06/06/2018.
  */
-
+@SuppressWarnings("serial")
 public class SeatClass implements Serializable {
 
 

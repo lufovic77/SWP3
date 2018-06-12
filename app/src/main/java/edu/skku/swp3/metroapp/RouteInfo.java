@@ -3,6 +3,7 @@ package edu.skku.swp3.metroapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Path;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -41,7 +42,7 @@ public class RouteInfo extends Activity {
     private String[] fourHo = {"남태령", "사당", "총신대입구"};
     private String[] sevenHo = {"총신대입구", "남성", "내방"};
     private String[] twoHo = {"낙성대", "사당", "방배"};
-
+    private PathPacket pk;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,15 +64,16 @@ public class RouteInfo extends Activity {
         depart.setClickable(false);
         arrive.setClickable(false);
         Intent intent = getIntent();
-        stationdata = (StationHolder) intent.getSerializableExtra("stationInstance");
-        path=stationdata.findpath();
+
+    //    path = (PathData) intent.getSerializableExtra("pathInstance");
+        pk= (PathPacket) intent.getSerializableExtra("pathPacket");
         //stationdata = (StationHolder) intent.getExtras().getSerializable("stationInstance");
 
         time.setText("5 분");
         final ArrayList<String> station;
         final ArrayList<Integer> stationTime;
-        station = path.path;
-
+        station = pk.getpath();
+        stationTime=pk.gettime();
         String one = station.get(0);
         String two;
         two = station.get(1);
@@ -122,12 +124,10 @@ public class RouteInfo extends Activity {
         deName.setTextColor(Color.BLACK);
         arName.setTextColor(Color.BLACK);
 
-        Calendar calendar = Calendar.getInstance();
-        this.minutes = calendar.get(Calendar.MINUTE) + calendar.get(Calendar.HOUR_OF_DAY) * 60;
+        //stationTime=path.closest(stationdata, minutes);
 
-      //  stationTime=path.closest(stationdata, minutes);
-
-        //minutes=stationTime.get(0);
+        minutes=stationTime.get(0);
+        //minutes=600;
         this.si = this.minutes / 60;
         this.bun = this.minutes % 60;
         String text = "";
@@ -135,13 +135,13 @@ public class RouteInfo extends Activity {
         deTime.setText(text);
         text = "출발 " + si + ":" + bun;
         depart.setText(text);
-        //minutes=stationTime.get(1);
-        minutes+=5;
+        minutes=stationTime.get(1);
+        //minutes+=5;
         this.si = this.minutes / 60;
         this.bun = this.minutes % 60;
         text = "도착: " + si + ":" + bun;
         arrive.setText(text);
-        text = "0" + si + ":" + bun;
+        text = si + ":" + bun;
         arTime.setText(text);
 
         seat.setOnClickListener(new View.OnClickListener() {
@@ -153,6 +153,7 @@ public class RouteInfo extends Activity {
             }
         });
     }
+
 
 }
 

@@ -8,7 +8,7 @@ import java.util.HashMap;
  * Created by TS on 2018. 5. 31..
  */
 
-
+@SuppressWarnings("serial")
 public class StationClass implements Serializable {
     HashMap<ArrayList<String>,SeatClass> stationtable;
     String stationname;

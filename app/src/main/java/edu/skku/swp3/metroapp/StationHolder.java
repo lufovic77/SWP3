@@ -19,7 +19,7 @@ import java.util.StringTokenizer;
 /**
  * Created by TS on 2018. 5. 31..
  */
-
+@SuppressWarnings("serial")
 class PathData implements Serializable{
     public ArrayList<String> path;
     public HashMap<String,StationClass> stationmp;
@@ -29,8 +29,10 @@ class PathData implements Serializable{
         path=new ArrayList<>();
         updown=ud;
     }
-    PathPacket createpacket(){
-        return new PathPacket(path,stationmp,length,updown);
+    PathPacket createpacket(StationHolder sh,int current,int lane){
+        PathPacket pk = new PathPacket(path,stationmp.get(path.get(0)).getcar(lane,updown,current),length,updown,closest(sh,current));
+
+        return pk;
     }
     void addstation(String station){
         path.add(station);
