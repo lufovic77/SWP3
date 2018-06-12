@@ -30,6 +30,9 @@ public class PathPacket implements Serializable {
     public ArrayList<Integer> gettime(){
         return times;
     }
+    public SeatClass getseats(){
+        return seats;
+    }
 
 
 }
