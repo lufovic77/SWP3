@@ -1,6 +1,7 @@
 package edu.skku.swp3.metroapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -33,24 +34,32 @@ public class MetroClass extends Activity{
     //car[][0]~[][4] = left seat의 좌석정보
     //car[][5]~[][9] = right seat의 좌석정보
     //seat state는 0: no one, 1: some one, 2: me!
-    private Integer[][] car = new Integer[11][10];
+    private Integer[][] car;
     private boolean seat_myself = false; //whether I seat or not.(I can seat only one.)
     private int present_car = 1;
     private Integer[] whereIseat = new Integer[2];
     private int index;
+    private SeatClass seats;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        seats= (SeatClass) intent.getSerializableExtra("seatInstance");
         setContentView(R.layout.metro);
-
+        car= new Integer[11][10];
         //get intent(with 행성지 이름, 호차)=>textview설정해주기
 
         carSpin = (Spinner)findViewById(R.id.carSpinner);
         for(int i=0;i<10;i++){
             SeatBtn[i]=(Button)findViewById(SeatId[i]);
-        }
 
+        }
+        for(int j=1;j<11;j++){
+            for(int i=0;i<10;i++) {
+                car[j][i] = 0;
+            }
+        }
         carSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -59,7 +68,9 @@ public class MetroClass extends Activity{
                 //호차 선택시 할 일
                 String str = carSpin.getSelectedItem().toString();
                 str.substring(0, str.length()-2);
-                present_car = Integer.parseInt(str);
+                present_car = Integer.parseInt(str.substring(0,1));
+                Log.i("value:",Integer.toString(present_car));
+                car[present_car]=seats.getseat(present_car);
                 seatUpdate(); //car[present]에 해당하는 정보에 맞게 좌석이미지 update하는 함수 호출
 
                 Log.e("Selected item : ",str);
