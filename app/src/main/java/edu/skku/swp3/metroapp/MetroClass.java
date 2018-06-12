@@ -51,14 +51,23 @@ public class MetroClass extends Activity{
             SeatBtn[i]=(Button)findViewById(SeatId[i]);
         }
 
-        carSpin.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        carSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
                 //호차 선택시 할 일
-                String str = (String) parent.getItemAtPosition(position);
+                String str = carSpin.getSelectedItem().toString();
                 str.substring(0, str.length()-2);
                 present_car = Integer.parseInt(str);
                 seatUpdate(); //car[present]에 해당하는 정보에 맞게 좌석이미지 update하는 함수 호출
+
+                Log.e("Selected item : ",str);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
             }
         });
 
