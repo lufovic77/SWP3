@@ -30,7 +30,14 @@ class PathData implements Serializable{
         updown=ud;
     }
     PathPacket createpacket(StationHolder sh,int current,int lane){
-        PathPacket pk = new PathPacket(path,stationmp.get(path.get(0)).getcar(lane,updown,current),length,updown,closest(sh,current));
+        ArrayList<Integer> times=closest(sh,current);
+        SeatClass got=sh.getstation(path.get(0)).getcar(lane,updown,times.get(0));
+        if(got==null){
+            Log.i("null found", "station:"+path.get(0)+updown+","+Integer.toString(lane)+":lane,time:,"+Integer.toString(times.get(0)));
+        }else{
+            Log.i("not null", updown+","+Integer.toString(lane)+":lane,time:,"+Integer.toString(times.get(0)));
+        }
+        PathPacket pk = new PathPacket(path,got,length,updown,times);
 
         return pk;
     }
