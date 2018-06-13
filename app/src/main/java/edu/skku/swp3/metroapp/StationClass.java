@@ -26,12 +26,12 @@ public class StationClass implements Serializable {
         isinterchange=false;
     }
 
-    public void addcar(int lane,String updown, int time,SeatClass car){
+    public void addcar(String startstation,int starttime,int lane,String updown, int time,SeatClass car){
         ArrayList<String> key=new ArrayList<>();
         key.add(Integer.toString(lane));//lane info
         key.add(updown);//up,down info
         key.add(Integer.toString(time));//car time
-        car.init(stationname,Integer.toString(lane),updown,Integer.toString(time));
+        car.init(startstation,Integer.toString(lane),updown,Integer.toString(starttime));
         //car.getseat(1);
         stationtable.put(key,car);
         return;

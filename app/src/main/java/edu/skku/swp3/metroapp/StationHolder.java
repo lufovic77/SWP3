@@ -180,10 +180,27 @@ public class StationHolder extends AsyncTask< Void, Void, Void> implements Seria
             stationmap.get(order.get(0)).upstart=first;
             stationmap.get(order.get(0)).uplast=last;
             stationmap.get(order.get(0)).upintv=intv;
+            nujuk=first;
+            nujukl=last;
+            for(int j=1;j<numstation;j++){
+                nujuk+=getintv(order.get(j-1),order.get(j));
+                nujukl+=getintv(order.get(j-1),order.get(j));
+                stationmap.get(order.get(j)).upstart=nujuk;
+                stationmap.get(order.get(j)).uplast=nujukl;
+                stationmap.get(order.get(j)).upintv=nujukl;
+            }
+            //add seat classes
             for(int k=first;k<=last;k+=intv){
                 car=new SeatClass();
-                stationmap.get(order.get(0)).addcar(linenum,updown,k,car);
+                stationmap.get(order.get(0)).addcar(order.get(0),k,linenum,updown,k,car);
+                nujuk=k;
+                for(int j=1;j<numstation;j++){
+                    nujuk+=getintv(order.get(j-1),order.get(j));
+                    stationmap.get(order.get(j)).addcar(order.get(0),k,linenum,updown,nujuk,car);
+                }
+
             }
+            /*
             nujuk=first;
             nujukl=last;
             for(int j=1;j<numstation;j++){
@@ -196,7 +213,7 @@ public class StationHolder extends AsyncTask< Void, Void, Void> implements Seria
                     car=new SeatClass();
                     stationmap.get(order.get(j)).addcar(linenum,updown,k,car);
                 }
-            }
+            }*/
             //down - reverse order
             line=sc.nextLine();
             Log.i("Reading second part ", line);
@@ -220,6 +237,31 @@ public class StationHolder extends AsyncTask< Void, Void, Void> implements Seria
             stationmap.get(order.get(0)).downstart=first;
             stationmap.get(order.get(0)).downlast=last;
             stationmap.get(order.get(0)).downintv=intv;
+            nujuk=first;
+            nujukl=last;
+            for(int j=1;j<numstation;j++){
+                nujuk+=getintv(order.get(j-1),order.get(j));
+                nujukl+=getintv(order.get(j-1),order.get(j));
+                stationmap.get(order.get(j)).downstart=nujuk;
+                stationmap.get(order.get(j)).downlast=nujukl;
+                stationmap.get(order.get(j)).downintv=nujukl;
+            }
+            //add seat classes
+            for(int k=first;k<=last;k+=intv){
+                car=new SeatClass();
+                stationmap.get(order.get(0)).addcar(order.get(0),k,linenum,updown,k,car);
+                nujuk=k;
+                for(int j=1;j<numstation;j++){
+                    nujuk+=getintv(order.get(j-1),order.get(j));
+                    stationmap.get(order.get(j)).addcar(order.get(0),k,linenum,updown,nujuk,car);
+                }
+
+            }
+            /*
+            numstation=order.size();
+            stationmap.get(order.get(0)).downstart=first;
+            stationmap.get(order.get(0)).downlast=last;
+            stationmap.get(order.get(0)).downintv=intv;
             for(int k=first;k<=last;k+=intv){
                 car=new SeatClass();
                 stationmap.get(order.get(0)).addcar(linenum,updown,k,car);
@@ -239,7 +281,7 @@ public class StationHolder extends AsyncTask< Void, Void, Void> implements Seria
                     car=new SeatClass();
                     stationmap.get(order.get(j)).addcar(linenum,updown,k,car);
                 }
-            }
+            }*/
         }//completed stations
 
         //get paths
