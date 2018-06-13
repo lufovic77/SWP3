@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -264,6 +265,7 @@ public class MetroClass extends Activity{
             public boolean onMenuItemClick(MenuItem item) {
                 //선택한 자리 0(no_one)으로 바꾸는 작업
                 seats.car[present_car][index] = 0;
+                seats.updateseat(off_time, off_station, present_car, index, 0);
                 seat_myself = false;    //앉은 자리 없다고 다시 표시
                 if(index<5){
                     SeatBtn[index].setBackgroundResource(R.drawable.lseat_noone);
