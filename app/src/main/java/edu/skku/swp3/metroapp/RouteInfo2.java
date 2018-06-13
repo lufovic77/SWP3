@@ -216,7 +216,7 @@ public class RouteInfo2 extends Activity {
             deTime.setText(text);
             text = "출발 " + si + ":" + bun;
             depart.setText(text);
-            minutes += 5;
+            minutes =stationTime.get(1);
             this.si = this.minutes / 60;
             this.bun = this.minutes % 60;
             text = si + ":" + bun;
@@ -224,7 +224,7 @@ public class RouteInfo2 extends Activity {
 
             text = si + ":" + bun;
             deTime2.setText(text);
-            minutes += 5;
+            minutes = stationTime.get(2);
             this.si = this.minutes / 60;
             this.bun = this.minutes % 60;
             text = "도착: " + si + ":" + bun;
@@ -236,7 +236,15 @@ public class RouteInfo2 extends Activity {
         seat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sc = pk.getseats();
 
+                Intent intent = new Intent(getBaseContext(), MetroClass.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("seatInstance", sc);
+                bundle.putInt("offTime", stationTime.get(2));
+                bundle.putString("offStation", station.get(2));
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }

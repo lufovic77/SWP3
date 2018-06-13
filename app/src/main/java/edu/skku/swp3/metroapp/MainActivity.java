@@ -165,35 +165,37 @@ public class MainActivity extends AppCompatActivity implements Serializable{
             @Override
             public void onClick(View v) {
                 stationdata.setstations(departure, arrival);
-
+                path = stationdata.findpath();
+                ArrayList<String> station = path.path;
+                String one = station.get(0);
+                String two = station.get(1);
                 for (int i = 0; i < fourHo.length; i++) {
-                    if (fourHo[i].equals(departure)) {
+                    if (fourHo[i].equals(one)) {
                         for (int j = 0; j < fourHo.length; j++) {
-                            if (fourHo[j].equals(arrival)) {
+                            if (fourHo[j].equals(two)) {
                                 laneNum=3;
                             }
                         }
                     }
                 }
                 for (int i = 0; i < twoHo.length; i++) {
-                    if (twoHo[i].equals(departure)) {
+                    if (twoHo[i].equals(one)) {
                         for (int j = 0; j < twoHo.length; j++) {
-                            if (twoHo[j].equals(arrival)) {
+                            if (twoHo[j].equals(two)) {
                                 laneNum=2;
                             }
                         }
                     }
                 }
                 for (int i = 0; i < sevenHo.length; i++) {
-                    if (sevenHo[i].equals(departure)) {
+                    if (sevenHo[i].equals(one)) {
                         for (int j = 0; j < sevenHo.length; j++) {
-                            if (sevenHo[j].equals(arrival)) {
+                            if (sevenHo[j].equals(two)) {
                                 laneNum=1;
                             }
                         }
                     }
                 }
-                path = stationdata.findpath();
                 String text = "";
                 int pathLength = (path.path.size());
                 Toast.makeText(MainActivity.this, "길이: " + pathLength, Toast.LENGTH_LONG).show();

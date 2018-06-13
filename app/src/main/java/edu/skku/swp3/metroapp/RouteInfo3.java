@@ -242,7 +242,15 @@ public class RouteInfo3 extends Activity {
         seat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sc = pk.getseats();
 
+                Intent intent = new Intent(getBaseContext(), MetroClass.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("seatInstance", sc);
+                bundle.putInt("offTime", stationTime.get(3));
+                bundle.putString("offStation", station.get(3));
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }
