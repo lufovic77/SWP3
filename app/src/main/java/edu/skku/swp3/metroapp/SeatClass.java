@@ -80,11 +80,11 @@ public class SeatClass implements Serializable {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                Socket soc = new Socket("115.145.238.76", 5000);
+                Socket soc = new Socket("192.168.0.2", 5000);
 
                 OutputStream os = soc.getOutputStream ();
                 DataOutputStream dos = new DataOutputStream(os);
-                dos.writeInt(0);//acquire data
+                dos.writeInt(1);//send data
                 dos.writeInt(carnum);
                 dos.writeInt(seatnum);
                 dos.writeInt(newval);

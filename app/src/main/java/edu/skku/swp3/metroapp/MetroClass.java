@@ -84,7 +84,11 @@ public class MetroClass extends Activity{
             public void onClick(View v) {
                 seats.car[present_car] = seats.getseat(present_car);
                 if(seat_myself) seats.car[whereIseat[0]][whereIseat[1]] = 2;
+                for(int i=0;i<10;i++){
+                    Log.e("Seat : ",Integer.toString(seats.car[present_car][i]));
+                }
                 seatUpdate();
+
             }
         });
 
@@ -178,13 +182,13 @@ public class MetroClass extends Activity{
         for(int i=0; i<5; i++){
             switch(seats.car[present_car][i]){
                 case 0:
-                    SeatBtn[index].setBackgroundResource(R.drawable.lseat_noone);
+                    SeatBtn[i].setBackgroundResource(R.drawable.lseat_noone);
                     break;
                 case 1:
-                    SeatBtn[index].setBackgroundResource(R.drawable.lseat_someone);
+                    SeatBtn[i].setBackgroundResource(R.drawable.lseat_someone);
                     break;
                 case 2:
-                    SeatBtn[index].setBackgroundResource(R.drawable.lseat_myself);
+                    SeatBtn[i].setBackgroundResource(R.drawable.lseat_myself);
                     break;
             }
         }
@@ -192,13 +196,13 @@ public class MetroClass extends Activity{
         for(int i=5; i<10; i++){
             switch(seats.car[present_car][i]){
                 case 0:
-                    SeatBtn[index].setBackgroundResource(R.drawable.rseat_noone);
+                    SeatBtn[i].setBackgroundResource(R.drawable.rseat_noone);
                     break;
                 case 1:
-                    SeatBtn[index].setBackgroundResource(R.drawable.rseat_someone);
+                    SeatBtn[i].setBackgroundResource(R.drawable.rseat_someone);
                     break;
                 case 2:
-                    SeatBtn[index].setBackgroundResource(R.drawable.rseat_myself);
+                    SeatBtn[i].setBackgroundResource(R.drawable.rseat_myself);
                     break;
             }
         }
