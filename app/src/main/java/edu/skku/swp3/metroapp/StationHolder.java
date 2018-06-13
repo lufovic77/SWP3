@@ -33,6 +33,8 @@ class PathData implements Serializable{
         Log.i("Received lane", Integer.toString(lane));
         ArrayList<Integer> times=closest(sh,current);
         Log.i("check size",Integer.toString(current));
+        Log.i("check time",Integer.toString(times.get(0)));
+        Log.i("check path",path.get(0));
         SeatClass got=sh.getstation(path.get(0)).getcar(lane,updown,times.get(0));
         if(got==null){
             Log.i("null found", "station:"+path.get(0)+updown+","+Integer.toString(lane)+":lane,time:,"+Integer.toString(times.get(0)));
@@ -187,7 +189,7 @@ public class StationHolder extends AsyncTask< Void, Void, Void> implements Seria
                 nujukl+=getintv(order.get(j-1),order.get(j));
                 stationmap.get(order.get(j)).upstart=nujuk;
                 stationmap.get(order.get(j)).uplast=nujukl;
-                stationmap.get(order.get(j)).upintv=nujukl;
+                stationmap.get(order.get(j)).upintv=intv;
             }
             //add seat classes
             for(int k=first;k<=last;k+=intv){
@@ -244,7 +246,7 @@ public class StationHolder extends AsyncTask< Void, Void, Void> implements Seria
                 nujukl+=getintv(order.get(j-1),order.get(j));
                 stationmap.get(order.get(j)).downstart=nujuk;
                 stationmap.get(order.get(j)).downlast=nujukl;
-                stationmap.get(order.get(j)).downintv=nujukl;
+                stationmap.get(order.get(j)).downintv=intv;
             }
             //add seat classes
             for(int k=first;k<=last;k+=intv){

@@ -1,5 +1,7 @@
 package edu.skku.swp3.metroapp;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,6 +60,9 @@ public class StationClass implements Serializable {
         }
         t=(target-starttime)/interval+1;
         calculated=starttime + interval * t;
+        Log.i("check time start:",Integer.toString(starttime)+"interval:"+Integer.toString(interval));
+        Log.i("check time t:",Integer.toString(t)+"target:"+Integer.toString(target));
+        Log.i("check time cal:",Integer.toString(calculated)+"end:"+Integer.toString(endtime));
         if(calculated>endtime)
         {
             return -1;//there is no train available
