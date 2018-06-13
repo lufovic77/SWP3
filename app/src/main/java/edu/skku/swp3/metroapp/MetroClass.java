@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -25,8 +26,9 @@ import java.net.Socket;
 
 public class MetroClass extends Activity{
     private Spinner carSpin;
+    private Button update;
     private Integer[] SeatId = { R.id.left_seat1, R.id.left_seat2, R.id.left_seat3, R.id.left_seat4, R.id.left_seat5
-                                , R.id.right_seat1, R.id.right_seat2, R.id.right_seat3, R.id.right_seat4, R.id.right_seat5};
+            , R.id.right_seat1, R.id.right_seat2, R.id.right_seat3, R.id.right_seat4, R.id.right_seat5};
     private Button SeatBtn[] = new Button[10];
 
     //car[0] = 비고
@@ -34,7 +36,11 @@ public class MetroClass extends Activity{
     //car[][0]~[][4] = left seat의 좌석정보
     //car[][5]~[][9] = right seat의 좌석정보
     //seat state는 0: no one, 1: some one, 2: me!
-    private Integer[][] car;
+    //off_time 내리는 시간(if seat state = 1)
+    //off_station 내리는 역(if seat state = 1)
+    private Integer[][] car = new Integer[11][10];
+    private Integer[][] off_time = new Integer[11][10];
+    private String[][] off_station = new String[11][10];
     private boolean seat_myself = false; //whether I seat or not.(I can seat only one.)
     private int present_car = 1;
     private Integer[] whereIseat = new Integer[2];
@@ -51,6 +57,7 @@ public class MetroClass extends Activity{
         //get intent(with 행성지 이름, 호차)=>textview설정해주기
 
         carSpin = (Spinner)findViewById(R.id.carSpinner);
+        update = (Button)findViewById(R.id.update);
         for(int i=0;i<10;i++){
             SeatBtn[i]=(Button)findViewById(SeatId[i]);
 
@@ -82,75 +89,92 @@ public class MetroClass extends Activity{
             }
         });
 
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                seatUpdate();
+            }
+        });
+
         SeatBtn[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(car[present_car][0] == 0) noone_popUp(v, 0);
+                else if(car[present_car][0] == 1) someone_popUp(v, 0);
                 else if(car[present_car][0] == 2) my_popUp(v, 0);
             }
         });
         SeatBtn[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(car[present_car][1] == 0) noone_popUp(v, 0);
-                else if(car[present_car][1] == 2) my_popUp(v, 0);
+                if(car[present_car][1] == 0) noone_popUp(v, 1);
+                else if(car[present_car][0] == 1) someone_popUp(v, 1);
+                else if(car[present_car][1] == 2) my_popUp(v, 1);
             }
         });
         SeatBtn[2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(car[present_car][2] == 0) noone_popUp(v, 0);
-                else if(car[present_car][2] == 2) my_popUp(v, 0);
+                if(car[present_car][2] == 0) noone_popUp(v, 2);
+                else if(car[present_car][0] == 1) someone_popUp(v, 2);
+                else if(car[present_car][2] == 2) my_popUp(v, 2);
             }
         });
         SeatBtn[3].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(car[present_car][3] == 0) noone_popUp(v, 0);
-                else if(car[present_car][3] == 2) my_popUp(v, 0);
+                if(car[present_car][3] == 0) noone_popUp(v, 3);
+                else if(car[present_car][0] == 1) someone_popUp(v, 3);
+                else if(car[present_car][3] == 2) my_popUp(v, 3);
             }
         });
         SeatBtn[4].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(car[present_car][4] == 0) noone_popUp(v, 0);
-                else if(car[present_car][4] == 2) my_popUp(v, 0);
+                if(car[present_car][4] == 0) noone_popUp(v, 4);
+                else if(car[present_car][0] == 1) someone_popUp(v, 4);
+                else if(car[present_car][4] == 2) my_popUp(v, 4);
             }
         });
 
         SeatBtn[5].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(car[present_car][5] == 0) noone_popUp(v, 0);
-                else if(car[present_car][5] == 2) my_popUp(v, 0);
+                if(car[present_car][5] == 0) noone_popUp(v, 5);
+                else if(car[present_car][0] == 1) someone_popUp(v, 5);
+                else if(car[present_car][5] == 2) my_popUp(v, 5);
             }
         });
         SeatBtn[6].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(car[present_car][6] == 0) noone_popUp(v, 0);
-                else if(car[present_car][6] == 2) my_popUp(v, 0);
+                if(car[present_car][6] == 0) noone_popUp(v, 6);
+                else if(car[present_car][0] == 1) someone_popUp(v, 6);
+                else if(car[present_car][6] == 2) my_popUp(v, 6);
             }
         });
         SeatBtn[7].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(car[present_car][7] == 0) noone_popUp(v, 0);
-                else if(car[present_car][7] == 2) my_popUp(v, 0);
+                if(car[present_car][7] == 0) noone_popUp(v, 7);
+                else if(car[present_car][0] == 1) someone_popUp(v, 7);
+                else if(car[present_car][7] == 2) my_popUp(v, 7);
             }
         });
         SeatBtn[8].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(car[present_car][8] == 0) noone_popUp(v, 0);
-                else if(car[present_car][8] == 2) my_popUp(v, 0);
+                if(car[present_car][8] == 0) noone_popUp(v, 8);
+                else if(car[present_car][0] == 1) someone_popUp(v, 8);
+                else if(car[present_car][8] == 2) my_popUp(v, 8);
             }
         });
         SeatBtn[9].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(car[present_car][9] == 0) noone_popUp(v, 0);
-                else if(car[present_car][9] == 2) my_popUp(v, 0);
+                if(car[present_car][9] == 0) noone_popUp(v, 9);
+                else if(car[present_car][0] == 1) someone_popUp(v, 9);
+                else if(car[present_car][9] == 2) my_popUp(v, 9);
             }
         });
     }
@@ -210,6 +234,24 @@ public class MetroClass extends Activity{
             }
         });
         popup.show();
+    }
+    public void someone_popUp(View v, int arg){
+        index = arg;
+        android.widget.PopupWindow popup = new android.widget.PopupWindow(MetroClass.this);
+        android.widget.TextView text = (TextView)findViewById(R.id.SomeonePopup);
+        text.setText(off_time[present_car][index].toString() + off_station[present_car][index]);
+
+        View layout = getLayoutInflater().inflate(R.layout.popup_content, null);
+        popup.setContentView(layout);
+        // Set content width and height
+        popup.setHeight(android.view.WindowManager.LayoutParams.WRAP_CONTENT);
+        popup.setWidth(android.view.WindowManager.LayoutParams.WRAP_CONTENT);
+        // Closes the popup window when touch outside of it - when looses focus
+        popup.setOutsideTouchable(true);
+        popup.setFocusable(true);
+        // Show anchored to button
+        //popup.setBackgroundDrawable(new android.graphics.drawable.BitmapDrawable());
+        popup.showAsDropDown(v);
     }
     public void my_popUp(View v, int arg){
         index = arg;

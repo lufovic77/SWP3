@@ -23,7 +23,11 @@ public class SeatClass implements Serializable {
     //car[][0]~[][4] = left seat의 좌석정보
     //car[][5]~[][9] = right seat의 좌석정보
     //seat state는 0: no one, 1: some one, 2: me!
+    //off_time 내리는 시간(if seat state = 1)
+    //off_station 내리는 역(if seat state = 1)
     public Integer[][] car = new Integer[11][10];
+    public Integer[][] off_time = new Integer[11][10];
+    public String[][] off_station = new String[11][10];
     public String lane;
     public String updown;
     public String time;
