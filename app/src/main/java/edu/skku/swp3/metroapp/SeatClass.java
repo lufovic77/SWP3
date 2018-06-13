@@ -120,7 +120,7 @@ public class SeatClass implements Serializable {
         updown=ud;
         time=tm;
     }
-    public void updateseat(int cn,int sn,int nv){
+    public void updateseat(int t,String station,int cn,int sn,int nv){
         carnum=cn;
         seatnum=sn;
         newval=nv;

@@ -153,6 +153,8 @@ public class RouteInfo extends Activity {
                 Intent intent = new Intent(getBaseContext(), MetroClass.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("seatInstance", sc);
+                bundle.putInt("offTime", stationTime.get(1));
+                bundle.putString("offStation", station.get(1));
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

@@ -32,6 +32,8 @@ public class MetroClass extends Activity{
                                 , R.id.right_seat1, R.id.right_seat2, R.id.right_seat3, R.id.right_seat4, R.id.right_seat5};
     private Button SeatBtn[] = new Button[10];
 
+    private int off_time;
+    private String off_station;
     private boolean seat_myself = false; //whether I seat or not.(I can seat only one.)
     private int present_car = 1;
     private Integer[] whereIseat = new Integer[2];
@@ -43,6 +45,8 @@ public class MetroClass extends Activity{
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         seats= (SeatClass) intent.getSerializableExtra("seatInstance");
+        off_time = (int) intent.getSerializableExtra("offTime");
+        off_station = (String) intent.getSerializableExtra("offStation");
         setContentView(R.layout.metro);
 
         carSpin = (Spinner)findViewById(R.id.carSpinner);
@@ -209,12 +213,12 @@ public class MetroClass extends Activity{
                 //앉았다고 표시한 자리가 있었으면, 그 자리 0(no_one)으로 set.
                 if(seat_myself){
                     seats.car[whereIseat[0]][whereIseat[1]] = 0;
-                    seats.updateseat(whereIseat[0], whereIseat[1], 0);
+                    seats.updateseat(off_time, off_station, whereIseat[0], whereIseat[1], 0);
                 }
                 //앉은 자리 whereIseat에 표시&update
                 whereIseat[0] = present_car;
                 whereIseat[1] = index;
-                seats.updateseat(whereIseat[0], whereIseat[1], 1); //다른 사용자에게는 someone_seat으로 보여야함
+                seats.updateseat(off_time, off_station, whereIseat[0], whereIseat[1], 1); //다른 사용자에게는 someone_seat으로 보여야함
                 //선택한 자리 2(myself)로 바꾸는 작업
                 seats.car[present_car][index] = 2;
                 seat_myself = true;
