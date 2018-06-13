@@ -219,6 +219,13 @@ public class MetroClass extends Activity{
                 if(seat_myself){
                     seats.car[whereIseat[0]][whereIseat[1]] = 0;
                     seats.updateseat(off_time, off_station, whereIseat[0], whereIseat[1], 0);
+                    if(whereIseat[0] == present_car) {
+                        if (index < 5) {
+                            SeatBtn[whereIseat[1]].setBackgroundResource(R.drawable.lseat_noone);
+                        } else {
+                            SeatBtn[whereIseat[1]].setBackgroundResource(R.drawable.rseat_noone);
+                        }
+                    }
                 }
                 //앉은 자리 whereIseat에 표시&update
                 whereIseat[0] = present_car;
