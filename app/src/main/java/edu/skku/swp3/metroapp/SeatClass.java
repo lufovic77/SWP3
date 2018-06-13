@@ -41,7 +41,7 @@ public class SeatClass implements Serializable {
         protected Integer[] doInBackground(Void... voids) {
             Integer[] seats = new Integer[10];
             try {
-                Socket soc = new Socket("115.145.238.76", 5000);
+                Socket soc = new Socket("192.168.0.2", 5000);
                 OutputStream os = soc.getOutputStream();
                 DataOutputStream dos = new DataOutputStream(os);
                 dos.writeInt(0);//acquire data

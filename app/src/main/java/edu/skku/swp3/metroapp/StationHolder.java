@@ -30,7 +30,9 @@ class PathData implements Serializable{
         updown=ud;
     }
     PathPacket createpacket(StationHolder sh,int current,int lane){
+        Log.i("Received lane", Integer.toString(lane));
         ArrayList<Integer> times=closest(sh,current);
+        Log.i("check size",Integer.toString(current));
         SeatClass got=sh.getstation(path.get(0)).getcar(lane,updown,times.get(0));
         if(got==null){
             Log.i("null found", "station:"+path.get(0)+updown+","+Integer.toString(lane)+":lane,time:,"+Integer.toString(times.get(0)));
@@ -192,7 +194,7 @@ public class StationHolder extends AsyncTask< Void, Void, Void> implements Seria
                 stationmap.get(order.get(j)).upintv=nujukl;
                 for(int k=nujuk;k<=nujukl;k+=intv){
                     car=new SeatClass();
-                    stationmap.get(order.get(0)).addcar(linenum,updown,k,car);
+                    stationmap.get(order.get(j)).addcar(linenum,updown,k,car);
                 }
             }
             //down - reverse order
@@ -222,6 +224,9 @@ public class StationHolder extends AsyncTask< Void, Void, Void> implements Seria
                 car=new SeatClass();
                 stationmap.get(order.get(0)).addcar(linenum,updown,k,car);
             }
+            //이거 위에 반복문에 넣어서 체크
+            //car= getcar로 찾아온 인스턴스로 해보기ㄴㄴ
+
             nujuk=first;
             nujukl=last;
             for(int j=1;j<numstation;j++){
@@ -232,7 +237,7 @@ public class StationHolder extends AsyncTask< Void, Void, Void> implements Seria
                 stationmap.get(order.get(j)).downintv=intv;
                 for(int k=nujuk;k<=nujukl;k+=intv){
                     car=new SeatClass();
-                    stationmap.get(order.get(0)).addcar(linenum,updown,k,car);
+                    stationmap.get(order.get(j)).addcar(linenum,updown,k,car);
                 }
             }
         }//completed stations
